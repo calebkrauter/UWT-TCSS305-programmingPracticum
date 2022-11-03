@@ -1,0 +1,69 @@
+﻿I updated 
+my cart test unit test.
+I left comments in the program and in the unit test to show what I have changed since submission one. Where javadocs pre-existed or should exist I left comments if something was updated.
+
+
+I added missing javadocs.
+
+
+I used checkstyles. In Item class I get check style warnings saying that exceptions will be thrown if specific cases are met which is by design, so I don’t know why I get warnings.
+
+
+Again in cart class I get a throws exception warning. The exception should be thrown here
+
+
+​​Assignment Name: BookStore Assignment 2
+
+
+
+
+TCSS 305 A: Programming Practicum, Autumn 2022
+
+
+
+
+Name: Caleb Krauter
+
+
+
+
+UWNetID: krauter1
+
+
+
+
+Assignment Overview:
+
+
+THIS IS MY SECOND SUBMISSION. I REQUESTED AN EXTENSION TO FINISH UP THE HW AND RECEIVED MORE TIME FROM TOM TO FINISH MY UNIT TESTING.
+
+
+NOTE:
+I updated my unit test cart test, javadocs, comments, and code with checkstyle errors. You will see comments related to what code or javadoc are from submission 2.
+
+
+This assignment is designed to help us work with multiple objects within a package that interfaces to a GUI. We must be able to troubleshoot bugs, write sufficient code that displays and calculates order information and unit test our work.
+
+
+
+
+Technical Impression:
+I was confused initially about what direction I should go to start. The cart class was a pain for me. I also tried to solve the bug that was provided and some of my methods in my classes were written incorrectly making it harder to find the bug. The calculate total method was a huge pain for me and I had to get help from Tom to figure it out. 
+
+
+
+
+When I enter zero in for my quantity I get the thrown exception saying that the quantity is zero, so the design works but I was not sure if I need to account for this better as it messes up the calculations after zero is entered. I get warnings that say I am throwing exceptions for null which we are asked to do, so I don't know why I get those warnings.
+
+
+SUBMISSION TWO RELATED INFO: I cleaned up checkstyles all the way and include pictures for running my checkstyles, and unit tests in the folder. My spotbugs said zero bugs for zero classes but appeared to be checking my classes so that confused me. For my second submission I made lots of updates to my cart test class, I updated my comments, javadocs, and checkstyle errors. I noticed that checkstyle and PMD conflicted, I was asked by checkstyle to add a final local variable and PMD asked me to remove it. I am also confused why PMD was telling me my javadocs were too long or too big when they are not more than the checkstyle "95" characters.
+
+
+
+
+After being suggested by a friend to try using a hashmap because another instructor suggested it, I tried using it with my own ideas. I put multiple hours into trying to get it to work for the cart class to no avail. So I got some help. Matt Bauchspies worked with me on hw 2, I was very stuck on how to attack HW 2, I didn’t really understand what I should do to start or how to move forward. We looked at his and my unfinished work and he gave me some guidance on how to move forward about using getters in equals method and a slight hint for how to search for the code error that says “oh no” like Tom ended up talking about in class and suggesting I could search for the phrase in the folder. Working more with Matt Bauchspies, we reviewed each other's work on hw 2 after he finished and after I spent hours working on it over the last two weeks. I received some guidance for how to use the hashmap I wanted to use so that I can do my calculations with the quantity and price for each instance. I asked for advice on unit testing and javadoc as well.
+
+
+
+
+I got some help from our discord group chat on unit testing and from Mat and Mike Yarmoshik on unit testing.

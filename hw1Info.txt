@@ -1,0 +1,67 @@
+A Shape interface that has the following items:
+public double area(): will return the area of a given shape – this method will have no code in it (it will be abstract)
+public String name(): will return the shape name – this method will have no code in it (it will be abstract)
+public default String toString(): will return a String containing the name of the shape along with its area as follows:
+
+Name: <shape name goes here>, Area: <area of shape goes here>
+
+implements the Comparable interface and provides an implementation for the public int compareTo(Comparable otherShape) behavior/method. This method should compare the current shape to the one passed in to the method. It must first compare by name, then by area if the names are the same. Be sure and use generics to specify you are comparing against another Shape when you implement this interface.
+All shape classes listed below must implement this Shape interface
+Circle class that has the following:
+Implements the Shape interface (and thus provides implementations of the area() and name() methods)
+An instance field for the radius that is final
+A package level constructor that is passed a radius
+The constructor (or helper it calls) must make sure this value is greater than 0 or throw and IllegalArgumentException with specific information about what was wrong with the value (e.g. it was not greater than 0 and show the actual value)
+A public get method to return the radius
+A private final set method that is passed a radius and makes sure it is greater than 0. If not it throws an IllegalArgumentException with specific information about what was wrong.
+The class and get method must be final
+Square class that has the following:
+Implements the Shape interface (and thus provides implementations of the area() and name() methods)
+An instance field for the side length that is final
+A package level constructor that is passed a side length
+A public get method to return the side length
+A private final set method that is passed a side length and makes sure it is greater than 0. If not it throws an IllegalArgumentException with specific information about what was wrong.
+The class and get method must be final
+Triangle class that has the following:
+Implements the Shape interface (and thus provides implementations of the area() and name() methods)
+An instance fields for the base and height that are final
+A package level constructor that is passed a base and height
+public get methods to return the base and height, respectively
+private final set methods that are passed a base and height, respectively, and makes sure they are greater than 0. If not they throw an IllegalArgumentException with specific information about what was wrong.
+The class and get methods must be final
+Rectangle class that has the following:
+Implements the Shape interface (and thus provides implementations of the area() and name() methods)
+An instance fields for the length and width that are final
+A package level constructor that is passed a length and width
+public get methods to return the length and width, respectively
+private final set methods that are passed a base and height, respectively, and makes sure they are greater than 0. If not they throw an IllegalArgumentException with specific information about what was wrong.
+The class and get methods must be final
+ShapeFactory class that has the following:
+Static methods to create Circle, Square, Triangle, and Rectangle
+Those static methods should accept parameters necessary to call the constructors for each of the classes
+ALL THE ABOVE ITEMS MUST BE IN A PACKAGE NAMED shapes
+ShapeTester class that has the following:
+Is placed in a package called controller
+Creates at least 5 shapes of each type using the ShapeFactory and places them in an ArrayList of type Shape
+The 5 shapes of each type should have at least two of those shapes with the same data (e.g. two Circles with the same radius, etc.)
+Prints the ArrayList of shapes, preceded by a message specifying that the shapes are being printed before sorting
+Make sure what you print is nicely formatted and easy to read
+Sorts the ArrayList of shapes
+You can use a sort method from the Java API or write one of your own
+If you write your own sort method you may only use the compareTo method provided by the shapes
+Prints the ArrayList of sorted shapes, preceded by a message specifying the shapes have been sorted
+Make sure what you print is nicely formatted and easy to read
+Additional Details/Requirements
+All classes and interfaces above must conform to our class documentation (Javadoc) and naming standards.
+Run CheckStyle, PMD, and SpotBugs and clear as many warnings as possible. If you are able to clear all of them, you can earn an extra 4 points on your assignment. However, you MUST document this in your executive summary. Also include screen shots that show you had no errors.
+Capture the output from running your program and place it in a pdf file called pdf. You can do a screen capture, a text capture, or whatever else you would like to get the output.
+Include an executive summary as you did on Assignment 0
+It should be named username-assignment1.txt with username replaced with your UWNetID
+See the specifications from assignment 0 for what to place your summary
+Include any CheckStyle or PMD warnings you were unable to resolve in this summary
+Create a folder named with your UWNetIDassignment1 (e.g. tcapaulassignment1) and place the following items in that folder
+The folder/directory that contains your Eclipse/IntelliJ project
+Your output capture (ShapeTesterOutput.pdf)
+Your executive summary (UWNetID-assignment1.txt)
+If you earned extra credit, be sure and include screen shots to show you have no errors/warnings from CheckStyle, PMD, and SpotBugs. Name this file ExtraCreditScreenShots.pdf
+Zip the folder and submit it to Canvas

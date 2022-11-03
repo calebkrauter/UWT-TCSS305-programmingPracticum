@@ -1,0 +1,28 @@
+﻿Assignment name: Assignment 1
+TCSS 305 A: Programming Practicum, Autumn 2022
+
+
+Name: Caleb Krauter
+UWNetID: Krauter1
+
+
+Assignment Overview:
+
+
+This assignment was designed to help us practice using inheritance, the final keyword, different types of visibility, interfaces and checking parameters by throwing exceptions. This assignment is an opportunity for me to refresh on old material and get ready for more challenging projects.
+
+
+Technical Impression:
+I broke this project down into parts. I started by creating the Shape class and the Circle class. I then created a temporary testing class to make sure my code worked. After working out some bugs I eventually made more shape classes. I later created the shapeFactory class and then updated my test class to meet requirements of the assignment and tested my code along the way. I had some difficulty as it had a poor understanding of inheritance and abstraction before this assignment but with the help of one of my classmates, the concepts made more sense and I was able to figure most everything out on my own and with a little googling. I did get a little bit of help from a classmate about how to sort my ArrayList using sort(null). I also had a pointer from a classmate to update my compareTo method with less code by using Double and comparing the areas.
+
+
+Unresolved problems in my submission:
+Frankly I got so many checkstyle errors that I didn’t have time to look over them all and what I did look over, I tried to fix some but many errors didn’t make much sense to me. Some refer to the location of my javadoc which I did update what I knew how to. I got an indentation warning/error but the indentation looks good to me. I am really lost on the checkstyles warnings. But… I didn’t get any spotbugs warnings.  
+I don’t know what a dangling javadoc error is, and there are a few of those. Ultimately I ran out of time to do all of the debugging I’d like to do, but the program works well and it looks pretty well written to me when it comes to style.
+
+
+I worked with Michael Yarmoshik a couple of times. Mostly Michael helped me understand concepts that I lacked greatly in comprehension with. There were a couple of lines of code he helped me with. I wasn’t aware of how to use the Double for comparing. He also helped me with using sort(null) to sort my arraylist. We chatted for a bit and shared screens 
+
+
+Did I do my javadoc right? I might need a refresher on that. Also did I use compareTo right? Also can you help me understand why I have so many checkstyle errors? I intend to put more time into figuring this out next time but I don’t think I did that bad of a job with my styling.
+I’d like to ask for consideration for extra credit for using recursion for outputting the info.
