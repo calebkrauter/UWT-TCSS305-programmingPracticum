@@ -298,34 +298,34 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
 
     }
-
-    private void updateWallet(int theValue) {
-
-        if (counter1 == 0) {
-            myInitialTempValue = myCash;
-        }
-        if (gameLogic.getRoundUpdate()) {
-            counter1 = 0;
-        } else {
-            counter1++;
-        }
-        System.out.println("Initial bet " + myInitialTempValue);
-        if (gameLogic.getWinValue() == false) {
-            myCash = myCash - theValue;
-            System.out.println("updated wallet " + myCash);
-            myTempValue = myInitialTempValue - myCash;
-            System.out.println("Amount on the table " + myTempValue);
-            System.out.print(" = " + myInitialTempValue);
-            System.out.print(" - " + myCash);
-            setWallet(myCash);
-        } else {
-            System.out.println("Temp value " + myTempValue);
-            System.out.println("Cash " + myCash);
-            setWallet(myTempValue*2 + myCash);
-            gameLogic.setMyWinValue(false);
-
-        }
-    }
+//
+//    private void updateWallet(int theValue) {
+//
+//        if (counter1 == 0) {
+//            myInitialTempValue = myCash;
+//        }
+//        if (gameLogic.getRoundUpdate()) {
+//            counter1 = 0;
+//        } else {
+//            counter1++;
+//        }
+//        System.out.println("Initial bet " + myInitialTempValue);
+//        if (gameLogic.getWinValue() == false) {
+//            myCash = myCash - theValue;
+//            System.out.println("updated wallet " + myCash);
+//            myTempValue = myInitialTempValue - myCash;
+//            System.out.println("Amount on the table " + myTempValue);
+//            System.out.print(" = " + myInitialTempValue);
+//            System.out.print(" - " + myCash);
+//            setWallet(myCash);
+//        } else {
+//            System.out.println("Temp value " + myTempValue);
+//            System.out.println("Cash " + myCash);
+//            setWallet(myTempValue*2 + myCash);
+//            gameLogic.setMyWinValue(false);
+//
+//        }
+//    }
     private void setWallet(int theValue) {
         myCash = theValue;
         myTextField5.setText(String.valueOf(myCash));
@@ -336,7 +336,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void setPlayerWins() {
-        updateWallet(myThirdTempValue);
+//        updateWallet(myThirdTempValue);
         mySecondTempValue = 0;
         myThirdTempValue = 0;
         myPlayerWins = gameLogic.getPlayerWins();
@@ -370,11 +370,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         gameLogic.setMyRandomRoll2();
         myRandomRoll2 = gameLogic.getRandomRoll2();
         drawDice.setRandomNum2(myRandomRoll2);
-    }
-
-    private void resetRoll() {
-        myRandomRoll1 = 0;
-        myRandomRoll1 = 0;
     }
     private int getMyRandomRoll1() {
        return myRandomRoll1;
