@@ -14,10 +14,10 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-
-// TODO make sure images load on any pc
-
 import static java.awt.event.KeyEvent.VK_SPACE;
+
+// TODO remove any implementation of betbutton
+// TODO make sure images load on any pc
 // TODO add poop emoji, try using a sprite sheet.
 // TODO - make sure that the textboxes can't adjust to become too large if there are many wins.
 // TODO - check order of params in constructor

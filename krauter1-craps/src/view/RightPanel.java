@@ -19,7 +19,7 @@ public class RightPanel extends JPanel {
     private static JButton myBetAmount4;
     private static JButton myBetAmount5;
     private static JButton myBetAmount6;
-
+    // TODO - Rename buttons
     // TODO - make buttons same sized...
     // TODO - UPDATE use ipadx and ipady or use setsize...
 
@@ -68,7 +68,7 @@ public class RightPanel extends JPanel {
 
     private void walletLabel() {
         // Wallet label
-        myConstraints.ipadx =20;
+        myConstraints.ipadx = 20;
         myConstraints.ipady = 10;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         myConstraints.gridx = 2;
@@ -83,7 +83,7 @@ public class RightPanel extends JPanel {
 
     private void textFields() {
         // Wallet textfield
-        myConstraints.ipadx = 60;
+        myConstraints.ipadx = 100;
         myConstraints.ipady = 10;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         myConstraints.gridx = 2;
@@ -99,22 +99,10 @@ public class RightPanel extends JPanel {
     }
 
     private void betButtons() {
-        // Bet button
-        myBetButton.setSize(new Dimension(20, 10));
-
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(150, 0, 0, 50);
-        myRightPanel.add(myBetButton, myConstraints);
 
         // Bet button amount 1
-        myBetAmount1.setSize(new Dimension(20, 10));
-
+        myConstraints.ipadx = 40;
+        myConstraints.ipady = 20;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         myConstraints.gridx = 2;
         myConstraints.gridy = 1;
@@ -128,65 +116,30 @@ public class RightPanel extends JPanel {
         // Bet button amount 2
         myBetAmount2.setSize(new Dimension(20, 10));
 
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
         myConstraints.insets = new Insets(250, 0, 0, 50);
         myRightPanel.add(myBetAmount2, myConstraints);
 
         // Bet button amount 3
         myBetAmount3.setSize(new Dimension(20, 10));
 
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
         myConstraints.insets = new Insets(300, 0, 0, 50);
         myRightPanel.add(myBetAmount3, myConstraints);
 
         // Bet button amount 4
         myBetAmount4.setSize(new Dimension(20, 10));
 
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
         myConstraints.insets = new Insets(350, 0, 0, 50);
         myRightPanel.add(myBetAmount4, myConstraints);
 
         // Bet amount button 5
         myBetAmount5.setSize(new Dimension(20, 10));
 
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
         myConstraints.insets = new Insets(400, 0, 0, 50);
         myRightPanel.add(myBetAmount5, myConstraints);
 
         // Bet amount button 6
         myBetAmount6.setSize(new Dimension(20, 10));
 
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
         myConstraints.insets = new Insets(450, 0, 0, 50);
         myRightPanel.add(myBetAmount6, myConstraints);
     }
