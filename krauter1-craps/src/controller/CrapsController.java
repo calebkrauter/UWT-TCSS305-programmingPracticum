@@ -242,27 +242,26 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                     myTextField2.setText(String.valueOf(getHouseWins()));
                     myTextField3.setText(String.valueOf(getPlayerScore()));
                 }
-//                if(e.getSource().equals(myBetButton)) {
-//                    updateWallet();
+// TODO - add implmentation for buttons.
+
+//                if(e.getSource().equals(myBetAmountButton1)) {
+//                    updateWallet(myBetAmount1);
 //                }
-                if(e.getSource().equals(myBetAmountButton1)) {
-                    updateWallet(myBetAmount1);
-                }
-                if(e.getSource().equals(myBetAmountButton2)) {
-                    updateWallet(myBetAmount2);
-                }
-                if(e.getSource().equals(myBetAmountButton3)) {
-                    updateWallet(myBetAmount3);
-                }
-                if(e.getSource().equals(myBetAmountButton4)) {
-                    updateWallet(myBetAmount4);
-                }
-                if(e.getSource().equals(myBetAmountButton5)) {
-                    updateWallet(myBetAmount5);
-                }
-                if(e.getSource().equals(myBetAmountButton6)) {
-                    updateWallet(myBetAmount6);
-                }
+//                if(e.getSource().equals(myBetAmountButton2)) {
+//                    updateWallet(myBetAmount2);
+//                }
+//                if(e.getSource().equals(myBetAmountButton3)) {
+//                    updateWallet(myBetAmount3);
+//                }
+//                if(e.getSource().equals(myBetAmountButton4)) {
+//                    updateWallet(myBetAmount4);
+//                }
+//                if(e.getSource().equals(myBetAmountButton5)) {
+//                    updateWallet(myBetAmount5);
+//                }
+//                if(e.getSource().equals(myBetAmountButton6)) {
+//                    updateWallet(myBetAmount6);
+//                }
             }
         };
 
@@ -294,61 +293,22 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myBetAmountButton4.addActionListener(newAction);
         myBetAmountButton5.addActionListener(newAction);
         myBetAmountButton6.addActionListener(newAction);
-
-
-
     }
-//
-//    private void updateWallet(int theValue) {
-//
-//        if (counter1 == 0) {
-//            myInitialTempValue = myCash;
-//        }
-//        if (gameLogic.getRoundUpdate()) {
-//            counter1 = 0;
-//        } else {
-//            counter1++;
-//        }
-//        System.out.println("Initial bet " + myInitialTempValue);
-//        if (gameLogic.getWinValue() == false) {
-//            myCash = myCash - theValue;
-//            System.out.println("updated wallet " + myCash);
-//            myTempValue = myInitialTempValue - myCash;
-//            System.out.println("Amount on the table " + myTempValue);
-//            System.out.print(" = " + myInitialTempValue);
-//            System.out.print(" - " + myCash);
-//            setWallet(myCash);
-//        } else {
-//            System.out.println("Temp value " + myTempValue);
-//            System.out.println("Cash " + myCash);
-//            setWallet(myTempValue*2 + myCash);
-//            gameLogic.setMyWinValue(false);
-//
-//        }
-//    }
+
     private void setWallet(int theValue) {
         myCash = theValue;
         myTextField5.setText(String.valueOf(myCash));
     }
-
     private int getWallet() {
         return myCash;
     }
-
     private void setPlayerWins() {
-//        updateWallet(myThirdTempValue);
-        mySecondTempValue = 0;
-        myThirdTempValue = 0;
         myPlayerWins = gameLogic.getPlayerWins();
     }
     private void setHouseWins() {
-//        updateWallet(mySecondTempValue);
-//        updateWallet();
         myHouseWins = gameLogic.getHouseWins();
     }
     public void setPlayerScore() {
-//        updateWallet(mySecondTempValue);
-//        updateWallet();
         myPlayerScore = gameLogic.getPlayerScore();
     }
     public int getPlayerWins() {
@@ -371,6 +331,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myRandomRoll2 = gameLogic.getRandomRoll2();
         drawDice.setRandomNum2(myRandomRoll2);
     }
+
     private int getMyRandomRoll1() {
        return myRandomRoll1;
     }

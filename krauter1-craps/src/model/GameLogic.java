@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class GameLogic {
-    private int myPlayerScore = 0;
+    private static int myPlayerScore = 0;
     private static int myPlayerWins = 0;
     private static int myHouseWins = 0;
     private Random random = new Random();
@@ -56,7 +56,6 @@ public class GameLogic {
         awardPointNumbers.add(8);
         awardPointNumbers.add(9);
         awardPointNumbers.add(10);
-
         if (myRollCounter == 1) {
             if (luckyNumbers.contains(mySum)) {
                 setPlayerWins();
@@ -77,17 +76,17 @@ public class GameLogic {
             // checks point if correct value sets score
             if (awardPointNumbers.contains(mySum)) {
                 setScoreIsAwarded(true);
-                setPlayerScore(getRollTotal());
+                setPlayerScore(myFirstRoll);
                 System.out.println("Score " + getPlayerScore());
             }
             // true that -> prev roll and curr roll are same
             if (getRollTotal() == myFirstRoll) {
-                System.out.println(" my Previous roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
+                System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 myRollsSame = true;
                 System.out.println("PLAYER WINS");
                 setPlayerWins();
             } else if (getRollTotal() == 7) {
-                System.out.println(" my Previous roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
+                System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 System.out.println("HOUSE WINS");
                 setHouseWins();
             } else {
@@ -105,17 +104,16 @@ public class GameLogic {
         return myScoreIsAwarded;
     }
     public void setPlayerWins() {
-        myLastRound = myRoundCounter;
-        myLastRound++;
+        myRollCounter = 0;
         myInitialWinCount = myPlayerWins;
-        myPlayerScore = 0;
+        setPlayerScore(0);
         System.out.println("Round reset: " + myRoundCounter);
-        setRoundUpdate(myRoundCounter);
         setMyWinValue(true);
-//        myPlayerWins++;
-//        if (myInitialWinCount < myPlayerWins) {
-//            myWin = true;
-//        }
+        myPlayerWins++;
+        System.out.println("Wins " + myPlayerWins);
+        if (myInitialWinCount < myPlayerWins) {
+            myWin = true;
+        }
     }
 
     public void setMyWinValue(boolean theValue) {
@@ -125,11 +123,9 @@ public class GameLogic {
         return myWin;
     }
     public void setHouseWins() {
-        myLastRound = myRoundCounter;
-        myLastRound++;
-        myPlayerScore = 0;
-        setRoundUpdate(myLastRound);
+        myRollCounter = 0;
         myHouseWins++;
+        setPlayerScore(0);
         setMyWinValue(false);
     }
     public void setPlayerScore(int theValue) {
@@ -168,26 +164,5 @@ public class GameLogic {
     public int getRollTotal() {
         return mySum;
     }
-
-    public void setRoundUpdate(int theRound) {
-        if (myRoundCounter < theRound) {
-            System.out.println("Round : " + theRound);
-            myRoundUpdate = true;
-        } else {
-            myRoundUpdate = false;
-        }
-    }
-    public boolean getRoundUpdate() {
-        return myRoundUpdate;
-    }
-
-    public void setWalletAfterBet(int theBetValue) {
-        myCash = myCash - theBetValue;
-    }
-    public int getWallet() {
-        return myCash;
-    }
-
-
 
 }
