@@ -46,7 +46,7 @@ public class LeftPanel extends JPanel{
         //Add panel three to panel 1 full of buttons and labels
         // TODO fix bandid that makes left panel big enough by using multiplier
         myConstraints.ipady = (int) myScreenSize.getHeight();
-        myConstraints.ipadx = 125;
+        myConstraints.ipadx = 115;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
         myConstraints.gridx = 0;
         myConstraints.gridy = 0;
@@ -54,7 +54,7 @@ public class LeftPanel extends JPanel{
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(125, 0, 0, 0);
+        myConstraints.insets = new Insets(160, 0, 0, 0);
         myBackgroundPanel.add(myLeftPanel, myConstraints);
 
     }
@@ -86,7 +86,7 @@ public class LeftPanel extends JPanel{
         // PlayerWinsLabel
         myConstraints.ipadx = 30;
         myConstraints.ipady = 10;
-        myConstraints.insets = new Insets(105, 10, 0, 30);
+        myConstraints.insets = new Insets(100, 10, 0, 30);
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -98,7 +98,7 @@ public class LeftPanel extends JPanel{
         // HouseWinsLabel
         myConstraints.ipadx = 30;
         myConstraints.ipady = 10;
-        myConstraints.insets = new Insets(205, 10, 0, 30);
+        myConstraints.insets = new Insets(200, 10, 0, 30);
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_START;
@@ -110,7 +110,7 @@ public class LeftPanel extends JPanel{
         // ScoreLabel
         myConstraints.ipadx = 30;
         myConstraints.ipady = 10;
-        myConstraints.insets = new Insets(305, 10, 0, 30);
+        myConstraints.insets = new Insets(300, 10, 0, 30);
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_START;

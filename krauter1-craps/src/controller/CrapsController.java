@@ -36,6 +36,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final Color myCenterPanelColor = Color.decode("#FF8383");
     private static final Color myLeftPanelColor = Color.decode("#D9D8C0");
     private static final Color myRightPanelColor = Color.decode("#97D0E3");
+    private static final Color myBackgroundPanelColor = Color.decode("#B97A57");
     private JPanel myBackgroundPanel;
     private JPanel myLeftPanel;
     private JPanel myCenterPanel;
@@ -69,7 +70,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final JLabel myScoreLabel = new JLabel(myScoreText);
     private static final JLabel mySumLabel = new JLabel(myTotalText);
     private static final JLabel myWalletLabel = new JLabel(myWalletText);
-    private static final ImageIcon myImage = new ImageIcon("src/controller/image1.jpg");
+    private static final ImageIcon myImage = new ImageIcon("src/controller/poopy.png");
     private static final JLabel titleImageLabel = new JLabel(myImage);
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
@@ -149,7 +150,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myCenterPanelConstraints = new GridBagConstraints();
 
         myBackgroundPanel = new JPanel(new GridBagLayout());
-        myBackgroundPanel.setOpaque(true);
+        myBackgroundPanel.setBackground(myBackgroundPanelColor);
         myStartJPane = new JOptionPane();
 
         drawDice = new DrawDice(new GridBagLayout(), getMyRandomRoll1(), getMyRandomRoll2());
@@ -176,7 +177,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         setCash(getWallet());
 
         dicePanel = new DicePanel(new GridBagLayout(), myBackgroundPanel,
-                myCenterPanel, myDicePanelConstraints, myJFrame, drawDice);
+                myCenterPanel, myDicePanelConstraints, myJFrame, drawDice, SCREEN_SIZE);
 
 
         rightPanel = new RightPanel(new GridBagLayout(), myBackgroundPanel, myRightPanel,
@@ -189,9 +190,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         leftPanel.setBackground(myLeftPanelColor);
         centerPanel = new CenterPanel(new GridBagLayout(), myBackgroundPanel,
                 myCenterPanel, myCenterPanelConstraints, myJFrame, myTextField4, CrapsController.mySumLabel, myRollButton, SCREEN_SIZE);
+
         titlePanel = new TitlePanel(new GridBagLayout(), myBackgroundPanel, titleImageLabel, myTitlePanelConstraints, myJFrame, SCREEN_SIZE);
         titlePanel.setOpaque(true);
-
 
         //TODO - add listeners and actions for all menuitems
         //TODO - add sound
@@ -244,8 +245,8 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 SCREEN_SIZE.height / 2 - myJFrame.getHeight() / 2);
         myJFrame.pack();
         myJFrame.setDefaultCloseOperation(myJFrame.EXIT_ON_CLOSE);
-        myJFrame.setSize(800, 750);
-        myJFrame.setMinimumSize(new Dimension(700, 750));
+        myJFrame.setSize(1000, 1000);
+        myJFrame.setMinimumSize(new Dimension(750, 750));
         myJFrame.add(myBackgroundPanel);
 //        myJFrame.setIconImage(myImage.getImage());
         myJFrame.setJMenuBar(menuBar);

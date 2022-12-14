@@ -56,7 +56,7 @@ public class RightPanel extends JPanel {
     private void rightPanel() {
         // Right panel
         myConstraints.ipady = (int) myScreenSize.getHeight();
-        myConstraints.ipadx = 125;
+        myConstraints.ipadx = 115;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         myConstraints.gridx = 2;
         myConstraints.gridy = 0;
@@ -64,7 +64,7 @@ public class RightPanel extends JPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(125, 0, 0, 0);
+        myConstraints.insets = new Insets(160, 0, 0, 0);
         myBackgroundPanel.add(myRightPanel, myConstraints);
     }
 

@@ -47,7 +47,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(125, 0, 0, 0);
+        myConstraints.insets = new Insets(160, 0, 0, 0);
         myBackgroundPanel.add(myCenterPanel, myConstraints);
     }
 
@@ -61,7 +61,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(100, 0, 0, 0);
+        myConstraints.insets = new Insets(100, 20, 0, 0);
         myCenterPanel.add(myRollButton,myConstraints);
     }
 
@@ -75,7 +75,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(0, 0, 25, 0);
+        myConstraints.insets = new Insets(0, 25, 25, 0);
         myCenterPanel.add(myTextField4,myConstraints);
     }
 
@@ -89,7 +89,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(0, 0, 30, 100);
+        myConstraints.insets = new Insets(0, 20, 25, 100);
         myCenterPanel.add(mySum, myConstraints);
     }
 }
