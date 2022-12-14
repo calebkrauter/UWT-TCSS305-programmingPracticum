@@ -163,6 +163,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myTextField2.setEditable(false);
         myTextField3.setEditable(false);
         myTextField4.setEditable(false);
+        setCash(getWallet());
 //
 //        loadSpriteSheet = new LoadSpriteSheet(mySpriteSheet, imageIcon, mySpriteWidth, mySpriteHeight);
 //        spritePanel = new SpritePanel(new GridBagLayout(), myConstraints, loadSpriteSheet, poopPanel, myCenterPanel);
@@ -195,6 +196,10 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 //        myJFrame.setIconImage(myImage.getImage());
         myJFrame.setVisible(true);
 
+    }
+
+    private void setCash(int theCash) {
+        gameLogic.setCash(theCash);
     }
     // TODO when consolidating joptionpane look at this
     //  https://mkyong.com/swing/java-swing-joptionpane-showinputdialog-example/

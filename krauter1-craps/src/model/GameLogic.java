@@ -17,7 +17,7 @@ public class GameLogic {
     private int myRandomRoll2;
     private int mySum = 0;
     private static int myRollCounter = 0;
-    private static int myCounter = 0;
+    private static int myCounter = -1;
     private int myFirstRoll = 0;
 
 
@@ -39,6 +39,7 @@ public class GameLogic {
         mySum = getRollTotal();
         setWallet(mySum);
 //        myInitialCash = myCash;
+        myCounter++;
     }
 
     public void scoreLogic() {
@@ -70,7 +71,9 @@ public class GameLogic {
                 setWonBet();
                 myBet = 0;
 //                myInitialCash = getWallet();
-                myCounter = 0;
+//                myCounter = 0;
+                    myInitialCash = myCash;
+
             }
             if (unLuckyNumbers.contains(mySum)) {
                 setHouseWins();
@@ -78,7 +81,9 @@ public class GameLogic {
                 setWinValue(false);
                 myBet = 0;
 //                myInitialCash = getWallet();
-                myCounter = 0;
+//                myCounter = 0;
+                myInitialCash = myCash;
+
             } else if (awardPointNumbers.contains(mySum)) {
                 setScoreIsAwarded(true);
                 // Should only happen one time during the first roll
@@ -105,7 +110,9 @@ public class GameLogic {
                 setWonBet();
                 myBet = 0;
 //                myInitialCash = getWallet();
-                myCounter = 0;
+//                myCounter = 0;
+                myInitialCash = myCash;
+
             } else if (getRollTotal() == 7) {
                 System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 System.out.println("HOUSE WINS");
@@ -113,7 +120,9 @@ public class GameLogic {
                 setWinValue(false);
                 myBet = 0;
 //                myInitialCash = getWallet();
-                myCounter = 0;
+//                myCounter = 0;
+                myInitialCash = myCash;
+
             } else {
                 System.out.println("KEEP ROLLING -> my Previous roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 setWinValue(false);
@@ -133,13 +142,15 @@ public class GameLogic {
         myRollCounter = 0;
 //        myInitialWinCount = myPlayerWins;
         setPlayerScore(0);
-        System.out.println("Round reset: " + myCounter);
         setWinValue(true);
         myPlayerWins++;
         System.out.println("Wins " + myPlayerWins);
 //        if (myInitialWinCount < myPlayerWins) {
 //            myWin = true;
 //        }
+    }
+    public void setCash(int theCash) {
+        myInitialCash = theCash;
     }
 
     public void setWinValue(boolean theValue) {
@@ -196,18 +207,18 @@ public class GameLogic {
             myCash = myTempCash*2 + myCash;
             System.out.println("I won! "+ myTempCash + " total " + myCash);
             setWallet(myCash);
+            myBet = 0;
+            setWinValue(false);
         }
     }
 
     public void updateWallet(int theBet) {
-//        if (myCounter == 0) {
-//            myInitialCash = myCash;
-//        }
 
+//        myCounter++;
 
-        myBet += theBet;
+        myBet = theBet;
         if (getWinValue() == false) {
-            myInitialCash = myCash;
+//            myInitialCash = myCash;
             System.out.println("I started with " + myInitialCash + " and I bet " + myBet);
             myCash = myCash - myBet;
             System.out.println("I currently have " + myCash);
