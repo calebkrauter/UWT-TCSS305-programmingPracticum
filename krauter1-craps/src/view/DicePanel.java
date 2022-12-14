@@ -35,7 +35,7 @@ public class DicePanel extends JPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(150, 20, (int) (myScreenSize.getHeight()/30), 0);
+        myConstraints.insets = new Insets(150, 20, (int) (myScreenSize.getHeight()/30) + 30, 0);
         myCenterPanel.add(myDicePanel, myConstraints);
     }
 }

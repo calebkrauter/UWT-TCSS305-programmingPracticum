@@ -247,7 +247,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 SCREEN_SIZE.height / 2 - myJFrame.getHeight() / 2);
         myJFrame.pack();
         myJFrame.setDefaultCloseOperation(myJFrame.EXIT_ON_CLOSE);
-        myJFrame.setSize(1000, 1000);
+        myJFrame.setSize(850, 850);
         myJFrame.setMinimumSize(new Dimension(750, 750));
         myJFrame.add(myBackgroundPanel);
         myJFrame.setIconImage(myImageIcon.getImage());
