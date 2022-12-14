@@ -49,7 +49,13 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private GameLogic gameLogic;
 
     private JTextField myTextField5 = new JTextField(String.valueOf(0));
-    private GridBagConstraints myConstraints;
+    private GridBagConstraints myTitlePanelConstraints;
+    private GridBagConstraints myDicePanelConstraints;
+    private GridBagConstraints myLeftPanelConstraints;
+    private GridBagConstraints myRightPanelConstraints;
+    private GridBagConstraints myCenterPanelConstraints;
+
+
     public JFrame myJFrame;
     private static String myCount = String.valueOf(0);
     private static final String myPlayerWon = "Player Wins: ";
@@ -135,13 +141,20 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     public CrapsController() {
         gameLogic = new GameLogic();
         myJFrame = new JFrame("The Game of Craps");
-        myConstraints = new GridBagConstraints();
+
+        myTitlePanelConstraints = new GridBagConstraints();
+        myDicePanelConstraints = new GridBagConstraints();
+        myLeftPanelConstraints = new GridBagConstraints();
+        myRightPanelConstraints = new GridBagConstraints();
+        myCenterPanelConstraints = new GridBagConstraints();
+
         myBackgroundPanel = new JPanel(new GridBagLayout());
         myBackgroundPanel.setOpaque(true);
         myStartJPane = new JOptionPane();
 
         drawDice = new DrawDice(new GridBagLayout(), getMyRandomRoll1(), getMyRandomRoll2());
-        drawDice.setOpaque(true);
+        drawDice.setBackground(myCenterPanelColor);
+
         setMyRandomNum1();
         setMyRandomNum2();
         setMyRollTotal();
@@ -163,20 +176,22 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         setCash(getWallet());
 
         dicePanel = new DicePanel(new GridBagLayout(), myBackgroundPanel,
-                myCenterPanel, myConstraints, myJFrame, drawDice);
-        centerPanel = new CenterPanel(new GridBagLayout(), myBackgroundPanel,
-                myCenterPanel, myConstraints, myJFrame, myTextField4, CrapsController.mySumLabel, myRollButton);
+                myCenterPanel, myDicePanelConstraints, myJFrame, drawDice);
 
-        leftPanel = new LeftPanel(new GridBagLayout(), myBackgroundPanel, myLeftPanel, myConstraints,
-                myJFrame, myTextField1, myTextField2, myTextField3,
-                CrapsController.myPlayerWinsLabel, CrapsController.myHouseWinsLabel, myHouseWon, myScoreLabel);
-        leftPanel.setBackground(myLeftPanelColor);
+
         rightPanel = new RightPanel(new GridBagLayout(), myBackgroundPanel, myRightPanel,
-                myConstraints, myJFrame, myWalletLabel, myTextField5, myBetButton,
-                myBetAmountButton1, myBetAmountButton2, myBetAmountButton3, myBetAmountButton4, myBetAmountButton5, myBetAmountButton6);
+                myRightPanelConstraints, myJFrame, myWalletLabel, myTextField5, myBetButton,
+                myBetAmountButton1, myBetAmountButton2, myBetAmountButton3, myBetAmountButton4, myBetAmountButton5, myBetAmountButton6, SCREEN_SIZE);
         rightPanel.setBackground(myRightPanelColor);
-        titlePanel = new TitlePanel(new GridBagLayout(), myBackgroundPanel, titleImageLabel, myConstraints, myJFrame);
+        leftPanel = new LeftPanel(new GridBagLayout(), myBackgroundPanel, myLeftPanel, myLeftPanelConstraints,
+                myJFrame, myTextField1, myTextField2, myTextField3,
+                CrapsController.myPlayerWinsLabel, CrapsController.myHouseWinsLabel, myHouseWon, myScoreLabel, SCREEN_SIZE);
+        leftPanel.setBackground(myLeftPanelColor);
+        centerPanel = new CenterPanel(new GridBagLayout(), myBackgroundPanel,
+                myCenterPanel, myCenterPanelConstraints, myJFrame, myTextField4, CrapsController.mySumLabel, myRollButton, SCREEN_SIZE);
+        titlePanel = new TitlePanel(new GridBagLayout(), myBackgroundPanel, titleImageLabel, myTitlePanelConstraints, myJFrame, SCREEN_SIZE);
         titlePanel.setOpaque(true);
+
 
         //TODO - add listeners and actions for all menuitems
         //TODO - add sound

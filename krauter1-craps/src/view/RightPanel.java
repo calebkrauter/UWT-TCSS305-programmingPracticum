@@ -19,6 +19,7 @@ public class RightPanel extends JPanel {
     private static JButton myBetAmount4;
     private static JButton myBetAmount5;
     private static JButton myBetAmount6;
+    private static Dimension myScreenSize;
     // TODO - Rename buttons
     // TODO - make buttons same sized...
     // TODO - UPDATE use ipadx and ipady or use setsize...
@@ -26,8 +27,8 @@ public class RightPanel extends JPanel {
     public RightPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
                       JPanel theRightPanel, GridBagConstraints theConstraints,
                       JFrame theJFrame, JLabel theWalletLabel, JTextField theTextField5, JButton theBetButton,
-                     JButton theBetAmount1, JButton theBetAmount2, JButton theBetAmount3,
-                     JButton theBetAmount4, JButton theBetAmount5, JButton theBetAmount6) {
+                      JButton theBetAmount1, JButton theBetAmount2, JButton theBetAmount3,
+                      JButton theBetAmount4, JButton theBetAmount5, JButton theBetAmount6, Dimension theScreenSize) {
 
         super(theGridBagLayout);
 
@@ -44,6 +45,7 @@ public class RightPanel extends JPanel {
         myBetAmount4 = theBetAmount4;
         myBetAmount5 = theBetAmount5;
         myBetAmount6 = theBetAmount6;
+        myScreenSize = theScreenSize;
 
         rightPanel();
         walletLabel();
@@ -53,8 +55,8 @@ public class RightPanel extends JPanel {
 
     private void rightPanel() {
         // Right panel
-        myConstraints.ipadx = myJFrame.getWidth()/3;
-        myConstraints.ipady = myJFrame.getHeight();
+        myConstraints.ipady = (int) myScreenSize.getHeight();
+        myConstraints.ipadx = 125;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
         myConstraints.gridx = 2;
         myConstraints.gridy = 0;

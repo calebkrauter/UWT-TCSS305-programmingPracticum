@@ -5,7 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class TitlePanel extends JPanel {
-    public TitlePanel(GridBagLayout gridBagLayout, JPanel p1, JLabel l1, GridBagConstraints constraints, JFrame jFrame) {
+    public TitlePanel(GridBagLayout gridBagLayout, JPanel p1, JLabel l1, GridBagConstraints constraints, JFrame jFrame, Dimension screenSize) {
         constraints.ipady = jFrame.getHeight();
         constraints.ipadx = jFrame.getWidth();
         constraints.insets = new Insets(0, 0, 0, 0);

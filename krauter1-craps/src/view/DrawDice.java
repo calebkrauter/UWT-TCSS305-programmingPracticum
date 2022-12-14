@@ -26,10 +26,6 @@ public class DrawDice extends JPanel {
         setRandomNum2(randomRoll2);
 
     }
-
-    public DrawDice() {
-        super();
-    }
     public void setRandomNum1(int theRandNum1) {
         myRandNum1 = theRandNum1;
     }
@@ -44,7 +40,8 @@ public class DrawDice extends JPanel {
     }
 
     @Override
-    public void paint(Graphics theGraphics) {
+    public void paintComponent(Graphics theGraphics) {
+        super.paintComponent(theGraphics);
         myGraphics = theGraphics;
         g2D = (Graphics2D) myGraphics;
 

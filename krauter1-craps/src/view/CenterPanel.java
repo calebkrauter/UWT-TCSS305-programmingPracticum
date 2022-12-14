@@ -13,9 +13,10 @@ public class CenterPanel {
     private static JTextField myTextField4;
     private static JLabel mySum;
     private static JButton myRollButton;
+    private static Dimension myScreenSize;
     public CenterPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
                        JPanel theCenterPanel, GridBagConstraints theConstraints,
-                       JFrame theJFrame, JTextField theTextField4, JLabel theSum, JButton theRollButton) {
+                       JFrame theJFrame, JTextField theTextField4, JLabel theSum, JButton theRollButton, Dimension theScreenSize) {
 
         myGridBagLayout = theGridBagLayout;
         myBackgroundPanel = theBackgroundPanel;
@@ -25,6 +26,7 @@ public class CenterPanel {
         myTextField4 = theTextField4;
         mySum = theSum;
         myRollButton = theRollButton;
+        myScreenSize = theScreenSize;
         centerPanel();
         button();
         textField();
@@ -32,12 +34,12 @@ public class CenterPanel {
         myRollButton.setEnabled(true);
     }
 
-    public void setMyTextField4(int theTotal) {
-        myTextField4.setText(String.valueOf(theTotal));
-    }
+//    public void setMyTextField4(int theTotal) {
+//        myTextField4.setText(String.valueOf(theTotal));
+//    }
     private void centerPanel() {
-        myConstraints.ipady = myJFrame.getHeight();
-        myConstraints.ipadx = myJFrame.getWidth();
+        myConstraints.ipady = (int) myScreenSize.getHeight();
+        myConstraints.ipadx = (int) myScreenSize.getWidth();
         myConstraints.anchor = GridBagConstraints.CENTER;
         myConstraints.gridx = 1;
         myConstraints.gridy = 0;
@@ -45,7 +47,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(125, myJFrame.getWidth()/4, 0, myJFrame.getWidth()/4);
+        myConstraints.insets = new Insets(125, 0, 0, 0);
         myBackgroundPanel.add(myCenterPanel, myConstraints);
     }
 
@@ -73,7 +75,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(0, 0, 100, 0);
+        myConstraints.insets = new Insets(0, 0, 25, 0);
         myCenterPanel.add(myTextField4,myConstraints);
     }
 
@@ -87,7 +89,7 @@ public class CenterPanel {
         myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(0, 0, 105, 100);
+        myConstraints.insets = new Insets(0, 0, 30, 100);
         myCenterPanel.add(mySum, myConstraints);
     }
 }

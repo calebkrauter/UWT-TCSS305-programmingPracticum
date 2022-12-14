@@ -10,8 +10,6 @@ public class DicePanel extends JPanel {
     private static GridBagConstraints myConstraints;
     private static JFrame myJFrame;
     private static JPanel myDicePanel;
-
-
     public DicePanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
                      JPanel theCenterPanel, GridBagConstraints theConstraints,
                      JFrame theJFrame, JPanel theDicePanel) {
@@ -32,10 +30,10 @@ public class DicePanel extends JPanel {
         myConstraints.gridx = 1;
         myConstraints.gridy = 0;
         myConstraints.gridheight = 2;
-        myConstraints.gridwidth = 2;
+        myConstraints.gridwidth = 0;
         myConstraints.weightx = 1;
         myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(150, 0, 150, 0);
+        myConstraints.insets = new Insets(150, 0, myJFrame.getHeight()/8, 0);
         myCenterPanel.add(myDicePanel, myConstraints);
     }
 }
