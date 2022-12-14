@@ -17,27 +17,33 @@ public class GameLogic {
     private int myRandomRoll2;
     private int mySum = 0;
     private static int myRollCounter = 0;
-    private static int myRoundCounter = 0;
+    private static int myCounter = 0;
     private int myFirstRoll = 0;
 
 
     private boolean myScoreIsAwarded = false;
     private boolean myRollsSame = false;
-    private static int myCash;
+    private static int myCash = 0;
     private static boolean myWin = false;
     private static int myInitialWinCount = 0;
     private static int myLastRound = 0;
     private static boolean myRoundUpdate = false;
+    private static int myBet = 0;
+    private static int myInitialCash = 0;
+    private static int myTempCash = 0;
 
     // TODO - https://stackoverflow.com/questions/26562162/attempt-to-invoke-virtual-method-int-java-util-random-nextintint-on-a-null-o
     // TODO - fix when pressing roll, doesn't get random value. Random values should be set and update values for
     // the side of the dice and the total and the game gui should update when roll is pressed.
     public GameLogic() {
         mySum = getRollTotal();
+        setWallet(mySum);
+//        myInitialCash = myCash;
     }
 
     public void scoreLogic() {
         myRollCounter++;
+        System.out.println(myCounter);
 
         random = new Random();
         luckyNumbers = new ArrayList();
@@ -60,17 +66,26 @@ public class GameLogic {
             if (luckyNumbers.contains(mySum)) {
                 setPlayerWins();
                 System.out.println("Player wins " + getPlayerWins());
+                setWinValue(true);
+                setWonBet();
+                myBet = 0;
+//                myInitialCash = getWallet();
+                myCounter = 0;
             }
             if (unLuckyNumbers.contains(mySum)) {
                 setHouseWins();
                 System.out.println("House wins " + getHouseWins());
-
+                setWinValue(false);
+                myBet = 0;
+//                myInitialCash = getWallet();
+                myCounter = 0;
             } else if (awardPointNumbers.contains(mySum)) {
                 setScoreIsAwarded(true);
                 // Should only happen one time during the first roll
                 myFirstRoll = getRollTotal();
                 setPlayerScore(getRollTotal());
                 System.out.println("Score " + getPlayerScore());
+                setWinValue(false);
             }
         } else {
             // checks point if correct value sets score
@@ -78,6 +93,7 @@ public class GameLogic {
                 setScoreIsAwarded(true);
                 setPlayerScore(myFirstRoll);
                 System.out.println("Score " + getPlayerScore());
+                setWinValue(false);
             }
             // true that -> prev roll and curr roll are same
             if (getRollTotal() == myFirstRoll) {
@@ -85,12 +101,22 @@ public class GameLogic {
                 myRollsSame = true;
                 System.out.println("PLAYER WINS");
                 setPlayerWins();
+                setWinValue(true);
+                setWonBet();
+                myBet = 0;
+//                myInitialCash = getWallet();
+                myCounter = 0;
             } else if (getRollTotal() == 7) {
                 System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 System.out.println("HOUSE WINS");
                 setHouseWins();
+                setWinValue(false);
+                myBet = 0;
+//                myInitialCash = getWallet();
+                myCounter = 0;
             } else {
                 System.out.println("KEEP ROLLING -> my Previous roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
+                setWinValue(false);
             }
         }
 
@@ -105,18 +131,18 @@ public class GameLogic {
     }
     public void setPlayerWins() {
         myRollCounter = 0;
-        myInitialWinCount = myPlayerWins;
+//        myInitialWinCount = myPlayerWins;
         setPlayerScore(0);
-        System.out.println("Round reset: " + myRoundCounter);
-        setMyWinValue(true);
+        System.out.println("Round reset: " + myCounter);
+        setWinValue(true);
         myPlayerWins++;
         System.out.println("Wins " + myPlayerWins);
-        if (myInitialWinCount < myPlayerWins) {
-            myWin = true;
-        }
+//        if (myInitialWinCount < myPlayerWins) {
+//            myWin = true;
+//        }
     }
 
-    public void setMyWinValue(boolean theValue) {
+    public void setWinValue(boolean theValue) {
         myWin = theValue;
     }
     public boolean getWinValue() {
@@ -126,11 +152,11 @@ public class GameLogic {
         myRollCounter = 0;
         myHouseWins++;
         setPlayerScore(0);
-        setMyWinValue(false);
+//        setWinValue(false);
     }
     public void setPlayerScore(int theValue) {
         myPlayerScore = theValue;
-        setMyWinValue(false);
+//        setWinValue(false);
     }
     public void setMyRollTotal() {
         mySum = getRandomRoll1() + getRandomRoll2();
@@ -163,6 +189,39 @@ public class GameLogic {
 
     public int getRollTotal() {
         return mySum;
+    }
+
+    private void setWonBet() {
+        if (getWinValue() == true) {
+            myCash = myTempCash*2 + myCash;
+            System.out.println("I won! "+ myTempCash + " total " + myCash);
+            setWallet(myCash);
+        }
+    }
+
+    public void updateWallet(int theBet) {
+//        if (myCounter == 0) {
+//            myInitialCash = myCash;
+//        }
+
+
+        myBet += theBet;
+        if (getWinValue() == false) {
+            myInitialCash = myCash;
+            System.out.println("I started with " + myInitialCash + " and I bet " + myBet);
+            myCash = myCash - myBet;
+            System.out.println("I currently have " + myCash);
+            myTempCash = myInitialCash - myCash;
+            System.out.println("If I win, I get a total of " + myTempCash*2 + " + " + myCash);
+            setWallet(myCash);
+        }
+    }
+
+    public void setWallet(int theCash) {
+        myCash = theCash;
+    }
+    public int getWallet() {
+        return myCash;
     }
 
 }

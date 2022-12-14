@@ -45,7 +45,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private JTextField myTextField2 = new JTextField(myCount);
     private JTextField myTextField3 = new JTextField(myCount);
     private JTextField myTextField4 = new JTextField(String.valueOf(getMyRollTotal()));
-    private JTextField myTextField5 = new JTextField(String.valueOf(getWallet()));
+    private GameLogic gameLogic;
+
+    private JTextField myTextField5 = new JTextField(String.valueOf(0));
     private GridBagConstraints myConstraints;
     public JFrame myJFrame;
     private static String myCount = String.valueOf(0);
@@ -65,7 +67,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     private static final JButton myRollButton = new JButton(myRollText);
-    private GameLogic gameLogic;
 
     private static DicePanel dicePanel;
     private static CenterPanel centerPanel;
@@ -90,7 +91,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     private static int myCash = 0;
     private static int myTempValue = 0;
-    private static int myInitialTempValue = myCash;
     private static String myBetButtonText = "Bet";
     private static String myBetAmountText1 = "$ 1";
     private static String myBetAmountText2 = "$ 5";
@@ -119,6 +119,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static int myThirdTempValue = 0;
     private static int counter1 = 0;
     private static int counter2 = 0;
+    private static int myBet = 0;
 
     //
 //    private static int mySpriteWidth = 750;
@@ -225,7 +226,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (e.getSource().equals(myRollButton)) {
-
+                    gameLogic.setWinValue(false);
                     setMyRandomNum1();
                     setMyRandomNum2();
                     drawDice.setRandomNum1(getMyRandomRoll1());
@@ -241,27 +242,28 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                     myTextField1.setText(String.valueOf(getPlayerWins()));
                     myTextField2.setText(String.valueOf(getHouseWins()));
                     myTextField3.setText(String.valueOf(getPlayerScore()));
+                    setWallet();
                 }
 // TODO - add implmentation for buttons.
 
-//                if(e.getSource().equals(myBetAmountButton1)) {
-//                    updateWallet(myBetAmount1);
-//                }
-//                if(e.getSource().equals(myBetAmountButton2)) {
-//                    updateWallet(myBetAmount2);
-//                }
-//                if(e.getSource().equals(myBetAmountButton3)) {
-//                    updateWallet(myBetAmount3);
-//                }
-//                if(e.getSource().equals(myBetAmountButton4)) {
-//                    updateWallet(myBetAmount4);
-//                }
-//                if(e.getSource().equals(myBetAmountButton5)) {
-//                    updateWallet(myBetAmount5);
-//                }
-//                if(e.getSource().equals(myBetAmountButton6)) {
-//                    updateWallet(myBetAmount6);
-//                }
+                if(e.getSource().equals(myBetAmountButton1)) {
+                    updateWallet(myBetAmount1);
+                }
+                if(e.getSource().equals(myBetAmountButton2)) {
+                    updateWallet(myBetAmount2);
+                }
+                if(e.getSource().equals(myBetAmountButton3)) {
+                    updateWallet(myBetAmount3);
+                }
+                if(e.getSource().equals(myBetAmountButton4)) {
+                    updateWallet(myBetAmount4);
+                }
+                if(e.getSource().equals(myBetAmountButton5)) {
+                    updateWallet(myBetAmount5);
+                }
+                if(e.getSource().equals(myBetAmountButton6)) {
+                    updateWallet(myBetAmount6);
+                }
             }
         };
 
@@ -295,13 +297,24 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myBetAmountButton6.addActionListener(newAction);
     }
 
-    private void setWallet(int theValue) {
-        myCash = theValue;
-        myTextField5.setText(String.valueOf(myCash));
+
+    private void setWallet(int theCash) {
+        gameLogic.setWallet(theCash);
+        myTextField5.setText(String.valueOf(getWallet()));
+
     }
-    private int getWallet() {
-        return myCash;
+    private void setWallet() {
+        myTextField5.setText(String.valueOf(getWallet()));
     }
+    private void updateWallet(int theBet) {
+        myBet = theBet;
+        gameLogic.updateWallet(myBet);
+        myTextField5.setText(String.valueOf(getWallet()));
+    }
+    public int getWallet() {
+        return gameLogic.getWallet();
+    }
+
     private void setPlayerWins() {
         myPlayerWins = gameLogic.getPlayerWins();
     }
