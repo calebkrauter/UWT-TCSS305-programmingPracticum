@@ -69,12 +69,12 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final JLabel myScoreLabel = new JLabel(myScoreText);
     private static final JLabel mySumLabel = new JLabel(myTotalText);
     private static final JLabel myWalletLabel = new JLabel(myWalletText);
-    private static final ImageIcon myImage = new ImageIcon("/Users/calebkrauter/Workspace/uw-tcss-305/krauter1-craps/src/controller/image1.jpg");
+    private static final ImageIcon myImage = new ImageIcon("image1.jpg");
     private static final JLabel titleImageLabel = new JLabel(myImage);
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     private static final JButton myRollButton = new JButton(myRollText);
-
+    
 
     private static DicePanel dicePanel;
     private static CenterPanel centerPanel;
