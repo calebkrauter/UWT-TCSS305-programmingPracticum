@@ -70,6 +70,7 @@ public class GameLogic {
                 setWinValue(true);
                 setWonBet();
                 myBet = 0;
+                myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                     myInitialCash = myCash;
@@ -80,6 +81,7 @@ public class GameLogic {
                 System.out.println("House wins " + getHouseWins());
                 setWinValue(false);
                 myBet = 0;
+                myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
@@ -109,6 +111,7 @@ public class GameLogic {
                 setWinValue(true);
                 setWonBet();
                 myBet = 0;
+                myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
@@ -119,6 +122,7 @@ public class GameLogic {
                 setHouseWins();
                 setWinValue(false);
                 myBet = 0;
+                myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
@@ -163,6 +167,7 @@ public class GameLogic {
         myRollCounter = 0;
         myHouseWins++;
         setPlayerScore(0);
+        myBet = 0;
 //        setWinValue(false);
     }
     public void setPlayerScore(int theValue) {
@@ -207,7 +212,6 @@ public class GameLogic {
             myCash = myTempCash*2 + myCash;
             System.out.println("I won! "+ myTempCash + " total " + myCash);
             setWallet(myCash);
-            myBet = 0;
             setWinValue(false);
         }
     }

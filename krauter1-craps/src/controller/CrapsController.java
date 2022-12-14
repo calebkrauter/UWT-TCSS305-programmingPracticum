@@ -14,7 +14,8 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import static java.awt.event.KeyEvent.VK_SPACE;
+
+import static java.awt.event.KeyEvent.*;
 
 // TODO remove any implementation of betbutton
 // TODO make sure images load on any pc
@@ -63,10 +64,11 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final JLabel mySumLabel = new JLabel(myTotalText);
     private static final JLabel myWalletLabel = new JLabel(myWalletText);
     private static final ImageIcon myImage = new ImageIcon("/Users/calebkrauter/Workspace/uw-tcss-305/krauter1-craps/src/controller/image1.jpg");
-    private static final JLabel l1 = new JLabel(myImage);
+    private static final JLabel titleImageLabel = new JLabel(myImage);
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
     private static final JButton myRollButton = new JButton(myRollText);
+
 
     private static DicePanel dicePanel;
     private static CenterPanel centerPanel;
@@ -120,34 +122,29 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static int counter1 = 0;
     private static int counter2 = 0;
     private static int myBet = 0;
+    private static JMenuBar menuBar = new JMenuBar();
+    private static JMenu gameMenu;
+    private static JMenu helpMenu;
+    private static JMenuItem optionsItem;
+    private static JMenuItem startItem;
+    private static JMenuItem resetItem;
+    private static JMenuItem exitItem;
+    private static JMenuItem rulesItem;
+    private static JMenuItem aboutItem;
 
-    //
-//    private static int mySpriteWidth = 750;
-//    private static int mySpriteHeight = 450;
-//    private BufferedImage bufferedImage = new BufferedImage(mySpriteWidth, mySpriteHeight, BufferedImage.TYPE_INT_RGB);
-//    private BufferedImage mySpriteSheet = null;
-//// https://gamedev.stackexchange.com/questions/179779/how-can-i-capture-only-a-part-of-my-sprite-sheet-in-my-game-for-java
-//    LoadSpriteSheet loadSpriteSheet;
-//    SpritePanel spritePanel;
-//    ImageIcon imageIcon = new ImageIcon("/Users/calebkrauter/Workspace/uw-tcss-305/krauter1-craps/src/controller/poopy spritesheet.png");
-//    JPanel poopPanel;
-    public CrapsController() throws IOException {
-//        mySpriteSheet = ImageIO.read(new File("/Users/calebkrauter/Workspace/uw-tcss-305/krauter1-craps/src/controller/poopy spritesheet.png"));
+    public CrapsController() {
         gameLogic = new GameLogic();
         myJFrame = new JFrame("The Game of Craps");
         myConstraints = new GridBagConstraints();
         myBackgroundPanel = new JPanel(new GridBagLayout());
         myBackgroundPanel.setOpaque(true);
         myStartJPane = new JOptionPane();
-//        inputMap.put(KeyStroke.getKeyStroke("ENTER"), "pressed");
 
-        listen();
         drawDice = new DrawDice(new GridBagLayout(), getMyRandomRoll1(), getMyRandomRoll2());
         drawDice.setOpaque(true);
         setMyRandomNum1();
         setMyRandomNum2();
         setMyRollTotal();
-//        poopPanel = new JPanel(new GridBagLayout());
         myCenterPanel = new JPanel(new GridBagLayout());
         myCenterPanel.setBackground(myCenterPanelColor);
         myLeftPanel = new JPanel(new GridBagLayout());
@@ -164,9 +161,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myTextField3.setEditable(false);
         myTextField4.setEditable(false);
         setCash(getWallet());
-//
-//        loadSpriteSheet = new LoadSpriteSheet(mySpriteSheet, imageIcon, mySpriteWidth, mySpriteHeight);
-//        spritePanel = new SpritePanel(new GridBagLayout(), myConstraints, loadSpriteSheet, poopPanel, myCenterPanel);
 
         dicePanel = new DicePanel(new GridBagLayout(), myBackgroundPanel,
                 myCenterPanel, myConstraints, myJFrame, drawDice);
@@ -181,8 +175,53 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 myConstraints, myJFrame, myWalletLabel, myTextField5, myBetButton,
                 myBetAmountButton1, myBetAmountButton2, myBetAmountButton3, myBetAmountButton4, myBetAmountButton5, myBetAmountButton6);
         rightPanel.setBackground(myRightPanelColor);
-        titlePanel = new TitlePanel(new GridBagLayout(), myBackgroundPanel, l1, myConstraints, myJFrame);
+        titlePanel = new TitlePanel(new GridBagLayout(), myBackgroundPanel, titleImageLabel, myConstraints, myJFrame);
         titlePanel.setOpaque(true);
+
+        //TODO - add listeners and actions for all menuitems
+        //TODO - add sound
+        //TODO - add Options
+        //TODO - add info to each menuitem page
+        //Consider making one page used for all menuitems but display different
+        // info depending on the button to minimize code
+        menuBar = new JMenuBar();
+
+        optionsItem = new JMenuItem("Options", KeyEvent.VK_O);
+        optionsItem.setToolTipText("press 'O'");
+        aboutItem = new JMenuItem("About", KeyEvent.VK_A);
+        aboutItem.setToolTipText("press 'A'");
+
+        rulesItem = new JMenuItem("Rules", KeyEvent.VK_R);
+        rulesItem.setToolTipText("press 'R'");
+
+        startItem = new JMenuItem("About", VK_SPACE);
+        startItem.setToolTipText("press 'SPACE'");
+
+        resetItem = new JMenuItem("Reset Game", KeyEvent.VK_R);
+        resetItem.setToolTipText("press 'R'");
+
+        exitItem = new JMenuItem("EXIT", KeyEvent.VK_ESCAPE);
+        exitItem.setToolTipText("press 'Alt/Option + ESC'");
+//        exitItem.setMnemonic(VK_ESCAPE);
+        exitItem.setAccelerator(KeyStroke.getKeyStroke(VK_ESCAPE, ActionEvent.ALT_MASK));
+
+
+
+
+        gameMenu = new JMenu("The Game of Craps");
+        helpMenu = new JMenu("Help");
+
+        gameMenu.add(startItem);
+        gameMenu.add(resetItem);
+        gameMenu.add(exitItem);
+        gameMenu.add(optionsItem);
+        helpMenu.add(aboutItem);
+        helpMenu.add(rulesItem);
+
+        menuBar.add(gameMenu);
+        menuBar.add(helpMenu);
+        listen();
+//        performAction();
     }
 
     public void loadGui() {
@@ -194,13 +233,12 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myJFrame.setMinimumSize(new Dimension(700, 750));
         myJFrame.add(myBackgroundPanel);
 //        myJFrame.setIconImage(myImage.getImage());
+        myJFrame.setJMenuBar(menuBar);
         myJFrame.setVisible(true);
 
     }
 
-    private void setCash(int theCash) {
-        gameLogic.setCash(theCash);
-    }
+
     // TODO when consolidating joptionpane look at this
     //  https://mkyong.com/swing/java-swing-joptionpane-showinputdialog-example/
     private void createStartJPane() {
@@ -220,8 +258,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             isGoodNumber = true;
             setWallet(Integer.parseInt(myInput));
         }
-
-
     }
 
     // TODO implement helper methods to simplify code in action performed consolidating specific actions.
@@ -269,6 +305,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 if(e.getSource().equals(myBetAmountButton6)) {
                     updateWallet(myBetAmount6);
                 }
+                if (e.getSource().equals(exitItem)) {
+                    System.exit(0);
+                }
             }
         };
 
@@ -300,7 +339,20 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myBetAmountButton4.addActionListener(newAction);
         myBetAmountButton5.addActionListener(newAction);
         myBetAmountButton6.addActionListener(newAction);
+
+        exitItem.addActionListener(newAction);
+
     }
+//    private void performAction() {
+//        AbstractAction action = new AbstractAction() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                if (e.getSource().equals(exitItem)) {
+//                }
+//            }
+//        };
+//        exitItem.setAction(action);
+//    }
 
 
     private void setWallet(int theCash) {
@@ -349,7 +401,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myRandomRoll2 = gameLogic.getRandomRoll2();
         drawDice.setRandomNum2(myRandomRoll2);
     }
-
+    private void setCash(int theCash) {
+        gameLogic.setCash(theCash);
+    }
     private int getMyRandomRoll1() {
        return myRandomRoll1;
     }
