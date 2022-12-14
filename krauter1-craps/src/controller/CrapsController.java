@@ -71,6 +71,8 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private static final JLabel mySumLabel = new JLabel(myTotalText);
     private static final JLabel myWalletLabel = new JLabel(myWalletText);
     private static final ImageIcon myImage = new ImageIcon("src/controller/poopy.png");
+    private static final ImageIcon myImageIcon = new ImageIcon("src/controller/poopyIcon.png");
+
     private static final JLabel titleImageLabel = new JLabel(myImage);
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
@@ -248,7 +250,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myJFrame.setSize(1000, 1000);
         myJFrame.setMinimumSize(new Dimension(750, 750));
         myJFrame.add(myBackgroundPanel);
-//        myJFrame.setIconImage(myImage.getImage());
+        myJFrame.setIconImage(myImageIcon.getImage());
         myJFrame.setJMenuBar(menuBar);
         myJFrame.setVisible(true);
 
