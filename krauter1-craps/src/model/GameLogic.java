@@ -1,6 +1,5 @@
 package model;
 
-import controller.*;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -8,6 +7,7 @@ public class GameLogic {
     private static int myPlayerScore = 0;
     private static int myPlayerWins = 0;
     private static int myHouseWins = 0;
+    private static int myStartingValue = 0;
     private Random random = new Random();
 //    private CrapsController crapsController;
     private static ArrayList<Integer> luckyNumbers;
@@ -37,7 +37,7 @@ public class GameLogic {
     // the side of the dice and the total and the game gui should update when roll is pressed.
     public GameLogic() {
         mySum = getRollTotal();
-        setWallet(mySum);
+//        setWallet(mySum);
 //        myInitialCash = myCash;
         myCounter++;
     }
@@ -65,10 +65,12 @@ public class GameLogic {
         awardPointNumbers.add(10);
         if (myRollCounter == 1) {
             if (luckyNumbers.contains(mySum)) {
-                setPlayerWins();
                 System.out.println("Player wins " + getPlayerWins());
                 setWinValue(true);
-                setWonBet();
+                setPlayerWon(true);
+                setPlayerWins();
+
+//                setWonBet();
                 myBet = 0;
                 myTempCash = 0;
 //                myInitialCash = getWallet();
@@ -77,85 +79,148 @@ public class GameLogic {
 
             }
             if (unLuckyNumbers.contains(mySum)) {
-                setHouseWins();
                 System.out.println("House wins " + getHouseWins());
-                setWinValue(false);
+                setWinValue(true);
+                setPlayerWon(false);
+                setHouseWins();
+
                 myBet = 0;
                 myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
 
+
             } else if (awardPointNumbers.contains(mySum)) {
-                setScoreIsAwarded(true);
+//                setScoreIsAwarded(true);
                 // Should only happen one time during the first roll
                 myFirstRoll = getRollTotal();
                 setPlayerScore(getRollTotal());
                 System.out.println("Score " + getPlayerScore());
                 setWinValue(false);
+                setPlayerWon(false);
             }
         } else {
             // checks point if correct value sets score
             if (awardPointNumbers.contains(mySum)) {
-                setScoreIsAwarded(true);
+//                setScoreIsAwarded(true);
                 setPlayerScore(myFirstRoll);
                 System.out.println("Score " + getPlayerScore());
                 setWinValue(false);
+                setPlayerWon(false);
             }
             // true that -> prev roll and curr roll are same
             if (getRollTotal() == myFirstRoll) {
                 System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 myRollsSame = true;
                 System.out.println("PLAYER WINS");
-                setPlayerWins();
                 setWinValue(true);
-                setWonBet();
+                setPlayerWon(true);
+                setPlayerWins();
+
+//                setWonBet();
                 myBet = 0;
                 myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
+
 
             } else if (getRollTotal() == 7) {
                 System.out.println(" my first roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 System.out.println("HOUSE WINS");
+                setWinValue(true);
+                setPlayerWon(false);
                 setHouseWins();
-                setWinValue(false);
                 myBet = 0;
                 myTempCash = 0;
 //                myInitialCash = getWallet();
 //                myCounter = 0;
                 myInitialCash = myCash;
 
+
             } else {
                 System.out.println("KEEP ROLLING -> my Previous roll : " + myFirstRoll + " Roll TOTAL : " + getRollTotal());
                 setWinValue(false);
+                setPlayerWon(false);
             }
         }
 
 
     }
 
-    private void setScoreIsAwarded(boolean theValue) {
-        myScoreIsAwarded = theValue;
+    private static int myPool = 0;
+    private static boolean myPlayerWon = false;
+    private static int myCurrentCash = 0;
+
+public void updateWalletAfterBet(int theBet, boolean theBetButtonsEnabled) {
+    myPool += theBet;
+    System.out.println("My pool " + myPool);
+    System.out.println("My current bet " + theBet);
+    if (theBetButtonsEnabled == false) {
+        setPool(myPool);
+        System.out.println("My pool " + myPool);
     }
-    private boolean getScoreIsAwarded() {
-        return myScoreIsAwarded;
-    }
+
+    setWallet(getWallet() - theBet);
+}
+
+public void setWallet(int theCurrentCash) {
+
+    myCurrentCash = theCurrentCash;
+    System.out.println("My current cash " + myCurrentCash);
+}
+
+public void setPool(int thePool) {
+    myPool = thePool;
+    System.out.println("My current pool " + myPool);
+}
+public int getWallet() {
+    return myCurrentCash;
+}
+public int getPool() {
+    return myPool;
+}
+
+public void setPlayerWon(boolean thePlayerWon) {
+    myPlayerWon = thePlayerWon;
+}
+public boolean getPlayerWon() {
+    return myPlayerWon;
+}
+
+
+
+
+
+
+//    private void setScoreIsAwarded(boolean theValue) {
+//        myScoreIsAwarded = theValue;
+//    }
+//    private boolean getScoreIsAwarded() {
+//        return myScoreIsAwarded;
+//    }
     public void setPlayerWins() {
         myRollCounter = 0;
 //        myInitialWinCount = myPlayerWins;
         setPlayerScore(0);
-        setWinValue(true);
         myPlayerWins++;
         System.out.println("Wins " + myPlayerWins);
-//        if (myInitialWinCount < myPlayerWins) {
-//            myWin = true;
-//        }
+        System.out.println("Player won " + myPlayerWon);
+
+        if (getPlayerWon()) {
+            int tempval = getPool()*2;
+            System.out.println("Cash after a win " + myCurrentCash + " + " + tempval);
+            myCurrentCash += getPool()*2;
+            setWallet(myCurrentCash);
+            System.out.println("Equals " + myCurrentCash);
+            setPlayerWon(false);
+            setPool(0);
+        }
     }
-    public void setCash(int theCash) {
-        myInitialCash = theCash;
-    }
+//    public void setCash(int theCash) {
+//        myInitialCash = theCash;
+//    }
 
     public void setWinValue(boolean theValue) {
         myWin = theValue;
@@ -168,11 +233,11 @@ public class GameLogic {
         myHouseWins++;
         setPlayerScore(0);
         myBet = 0;
-//        setWinValue(false);
+        setPool(0);
+
     }
     public void setPlayerScore(int theValue) {
         myPlayerScore = theValue;
-//        setWinValue(false);
     }
     public void setMyRollTotal() {
         mySum = getRandomRoll1() + getRandomRoll2();
@@ -207,36 +272,46 @@ public class GameLogic {
         return mySum;
     }
 
-    private void setWonBet() {
-        if (getWinValue() == true) {
-            myCash = myTempCash*2 + myCash;
-            System.out.println("I won! "+ myTempCash + " total " + myCash);
-            setWallet(myCash);
-            setWinValue(false);
-        }
-    }
+//    private void setWonBet() {
+//        if (getWinValue() == true) {
+//            myCash = myTempCash*2 + myCash;
+//            System.out.println("I won! "+ myTempCash + " total " + myCash);
+//            setWallet(myCash);
+//        }
+//    }
 
-    public void updateWallet(int theBet) {
+//    public void updateWallet(int theBet) {
+//
+////        myCounter++;
+//
+//        myBet = theBet;
+//        if (getWinValue() == false) {
+////            myInitialCash = myCash;
+//            System.out.println("My current cash " + myCash);
+//
+//            System.out.println("I started with " + getStartingValue() + " and I bet " + myBet);
+//            myCash = getStartingValue() - myBet;
+//            System.out.println("I currently have " + myCash);
+//            myTempCash = getStartingValue() - myCash;
+//            System.out.println("If I win, I get a total of " + myTempCash*2 + " + " + myCash);
+//            setWallet(myCash);
+//        }
+//    }
 
-//        myCounter++;
-
-        myBet = theBet;
-        if (getWinValue() == false) {
-//            myInitialCash = myCash;
-            System.out.println("I started with " + myInitialCash + " and I bet " + myBet);
-            myCash = myCash - myBet;
-            System.out.println("I currently have " + myCash);
-            myTempCash = myInitialCash - myCash;
-            System.out.println("If I win, I get a total of " + myTempCash*2 + " + " + myCash);
-            setWallet(myCash);
-        }
-    }
-
-    public void setWallet(int theCash) {
-        myCash = theCash;
-    }
-    public int getWallet() {
-        return myCash;
-    }
-
+//    public void setWallet(int theCash) {
+//        myCash = theCash;
+//        System.out.println(myCash);
+//    }
+//    public int getWallet() {
+//        return myCash;
+//    }
+//
+//    public int getStartingValue() {
+//        return myStartingValue;
+//    }
+//
+//    public void setStartingValue(int theValue) {
+//        myStartingValue = theValue;
+//    }
 }
+
