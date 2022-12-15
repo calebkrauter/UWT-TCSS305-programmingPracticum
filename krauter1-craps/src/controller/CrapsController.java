@@ -13,6 +13,9 @@ import java.beans.PropertyChangeListener;
 
 import static java.awt.event.KeyEvent.*;
 
+// TODO disable and enable buttons as necessary... This is being done incorrectly currently. Check what buttons to enable and disable.
+
+
 // TODO remove any implementation of betbutton
 // TODO make sure images load on any pc
 // TODO add poop emoji, try using a sprite sheet.
@@ -409,20 +412,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
 
     }
-//
-//    private void setWalletFromTextInput() {
-////        gameLogic.setCash(Integer.parseInt(myTextField5.getText()));
-//        gameLogic.setStartingValue(Integer.parseInt(myTextField5.getText()));
-//    }
-//
-//    private void setWalletText() {
-//        myTextField5.setText(String.valueOf(getWallet()));
-//    }
-//    private void updateWallet(int theBet) {
-//        myBet = theBet;
-//        gameLogic.updateWallet(myBet);
-//        myTextField5.setText(String.valueOf(getWallet()));
-//    }
 
     private void setEnableBetButtons(boolean theValue) {
         myBetAmountButton1.setEnabled(theValue);
@@ -481,9 +470,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myRandomRoll2 = gameLogic.getRandomRoll2();
         drawDice.setRandomNum2(myRandomRoll2);
     }
-//    private void setCash(int theCash) {
-//        gameLogic.setCash(theCash);
-//    }
+
     private int getMyRandomRoll1() {
        return myRandomRoll1;
     }
