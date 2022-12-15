@@ -174,6 +174,7 @@ public boolean getPlayerWon() {
         setPool(0);
 
     }
+
     public void setPlayerScore(int theValue) {
         myPlayerScore = theValue;
     }
@@ -208,6 +209,22 @@ public boolean getPlayerWon() {
 
     public int getRollTotal() {
         return mySum;
+    }
+
+    private void setPlayerWins(int theWinCount) {
+        myPlayerWins = theWinCount;
+    }
+    private void setHouseWins(int theWinCount) {
+        myHouseWins = theWinCount;
+    }
+
+    public void resetGameData() {
+        setWallet(0);
+        setPool(0);
+        setPlayerWon(false);
+        setWinValue(false);
+        setPlayerWins(0);
+        setHouseWins(0);
     }
 
 }
