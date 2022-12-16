@@ -26,7 +26,7 @@ public class RightPanel extends JPanel {
 
     public RightPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
                       JPanel theRightPanel, GridBagConstraints theConstraints,
-                      JFrame theJFrame, JLabel theWalletLabel, JTextField theTextField5, JButton theBetButton,
+                      JFrame theJFrame, JLabel theWalletLabel, JTextField theTextField5,
                       JButton theBetAmount1, JButton theBetAmount2, JButton theBetAmount3,
                       JButton theBetAmount4, JButton theBetAmount5, JButton theBetAmount6, Dimension theScreenSize) {
 
@@ -38,7 +38,6 @@ public class RightPanel extends JPanel {
         myJFrame = theJFrame;
         myWalletLabel = theWalletLabel;
         myTextField5 = theTextField5;
-        myBetButton = theBetButton;
         myBetAmount1 = theBetAmount1;
         myBetAmount2 = theBetAmount2;
         myBetAmount3 = theBetAmount3;

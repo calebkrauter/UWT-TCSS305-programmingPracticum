@@ -32,6 +32,7 @@ public class GameLogic {
 
     private static int myPool = 0;
     private static boolean myPlayerWon = false;
+    private static boolean myHouseWon = false;
     private static int myCurrentCash = 0;
     // TODO - https://stackoverflow.com/questions/26562162/attempt-to-invoke-virtual-method-int-java-util-random-nextintint-on-a-null-o
     // TODO - fix when pressing roll, doesn't get random value. Random values should be set and update values for
@@ -66,6 +67,7 @@ public class GameLogic {
             if (luckyNumbers.contains(mySum)) {
                 setWinValue(true);
                 setPlayerWon(true);
+                setHouseWon(false);
                 setPlayerWins();
                 myBet = 0;
                 myTempCash = 0;
@@ -75,6 +77,7 @@ public class GameLogic {
             if (unLuckyNumbers.contains(mySum)) {
                 setWinValue(true);
                 setPlayerWon(false);
+                setHouseWon(true);
                 setHouseWins();
                 myBet = 0;
                 myTempCash = 0;
@@ -86,6 +89,7 @@ public class GameLogic {
                 setPlayerScore(getRollTotal());
                 setWinValue(false);
                 setPlayerWon(false);
+                setHouseWon(false);
             }
         } else {
             // checks point if correct value sets score
@@ -93,11 +97,13 @@ public class GameLogic {
                 setPlayerScore(myFirstRoll);
                 setWinValue(false);
                 setPlayerWon(false);
+                setHouseWon(false);
             }
             if (getRollTotal() == myFirstRoll) {
                 myRollsSame = true;
                 setWinValue(true);
                 setPlayerWon(true);
+                setHouseWon(false);
                 setPlayerWins();
                 myBet = 0;
                 myTempCash = 0;
@@ -106,6 +112,7 @@ public class GameLogic {
             } else if (getRollTotal() == 7) {
                 setWinValue(true);
                 setPlayerWon(false);
+                setHouseWon(true);
                 setHouseWins();
                 myBet = 0;
                 myTempCash = 0;
@@ -113,6 +120,7 @@ public class GameLogic {
             } else {
                 setWinValue(false);
                 setPlayerWon(false);
+                setHouseWon(false);
             }
         }
 
@@ -144,6 +152,12 @@ public int getPool() {
 public void setPlayerWon(boolean thePlayerWon) {
     myPlayerWon = thePlayerWon;
 }
+public void setHouseWon(boolean theHouseWon) {
+        myHouseWon = theHouseWon;
+    }
+    public boolean getHouseWon() {
+        return myHouseWon;
+    }
 public boolean getPlayerWon() {
     return myPlayerWon;
 }
@@ -155,7 +169,6 @@ public boolean getPlayerWon() {
         if (getPlayerWon()) {
             myCurrentCash += getPool()*2;
             setWallet(myCurrentCash);
-            setPlayerWon(false);
             setPool(0);
         }
     }
@@ -178,9 +191,13 @@ public boolean getPlayerWon() {
     public void setPlayerScore(int theValue) {
         myPlayerScore = theValue;
     }
-    public void setMyRollTotal() {
+    public void setRollTotal() {
         mySum = getRandomRoll1() + getRandomRoll2();
     }
+    public void setRollTotalZero() {
+        mySum = 0;
+    }
+
 
     public void setMyRandomRoll1() {
         myRandomRoll1 = random.nextInt(1, 7);

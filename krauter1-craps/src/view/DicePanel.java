@@ -5,37 +5,25 @@ import java.awt.*;
 
 public class DicePanel extends JPanel {
 
-    private static JPanel myBackgroundPanel;
-    private static JPanel myCenterPanel;
-    private static GridBagConstraints myConstraints;
-    private static JFrame myJFrame;
-    private static JPanel myDicePanel;
-    private static Dimension myScreenSize;
-    public DicePanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
-                     JPanel theCenterPanel, GridBagConstraints theConstraints,
-                     JFrame theJFrame, JPanel theDicePanel, Dimension theScreenSize) {
+
+
+
+
+
+    public DicePanel(GridBagLayout theGridBagLayout, JPanel theCenterPanel, GridBagConstraints theDicePanelConstraints, DrawDice theDrawDice, Dimension theScreenSize) {
         super(theGridBagLayout);
 
-        myBackgroundPanel = theBackgroundPanel;
-        myCenterPanel = theCenterPanel;
-        myConstraints = theConstraints;
-        myJFrame = theJFrame;
-        myDicePanel = theDicePanel;
-        myScreenSize = theScreenSize;
-        dicePanel();
+        theDicePanelConstraints.ipady = 600;
+        theDicePanelConstraints.ipadx = 100;
+        theDicePanelConstraints.anchor = GridBagConstraints.PAGE_END;
+        theDicePanelConstraints.gridx = 1;
+        theDicePanelConstraints.gridy = 0;
+        theDicePanelConstraints.gridheight = 2;
+        theDicePanelConstraints.gridwidth = 0;
+        theDicePanelConstraints.weightx = 1;
+        theDicePanelConstraints.weighty = 1;
+        theDicePanelConstraints.insets = new Insets(150, 20, (int) (theScreenSize.getHeight()/30) + 30, 0);
+        theCenterPanel.add(theDrawDice, theDicePanelConstraints);
+    }
 
-    }
-    private void dicePanel() {
-        myConstraints.ipady = 600;
-        myConstraints.ipadx = 100;
-        myConstraints.anchor = GridBagConstraints.PAGE_END;
-        myConstraints.gridx = 1;
-        myConstraints.gridy = 0;
-        myConstraints.gridheight = 2;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(150, 20, (int) (myScreenSize.getHeight()/30) + 30, 0);
-        myCenterPanel.add(myDicePanel, myConstraints);
-    }
 }
