@@ -3,18 +3,28 @@ package controller;
 import model.GameLogic;
 import view.*;
 
+import javax.print.attribute.standard.Media;
+import javax.sound.sampled.*;
+import javax.sound.sampled.spi.AudioFileReader;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.io.File;
+import java.io.IOException;
 import java.util.InputMismatchException;
 
 import static java.awt.event.KeyEvent.*;
 
 public class CrapsController extends JPanel implements PropertyChangeListener {
     private static String myCount = String.valueOf(0);
+    private static final String music = "src/controller/music.wav";
+    private static final String diceAudio = "src/controller/diceRoll.wav";
+    private static final String winAudio = "src/controller/winAudio.wav";
+    private static final String loseAudio = "src/controller/loseAudio.wav";
+    private static final String buttonAudio = "src/controller/buttonAudio.wav";
     private int myRandomRoll2;
     private int myPlayerWins;
     private int myHouseWins;
@@ -213,6 +223,16 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         loadGui();
         listen();
 
+        try {
+            playMusic();
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
+
     }
 
     private String intToMoneyString(int theText) {
@@ -259,6 +279,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 JOptionPane.DEFAULT_OPTION);
     }
     private void youWonMessage() {
+        try {
+            playAudio(winAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         int input = JOptionPane.showConfirmDialog(new JFrame(),"You are so cool. Keep playing. "
                 + "You deserve to spend some money. "
                 + "\nYOU WON!" + "\nWould you like to play again?", "You Won",
@@ -270,6 +299,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
     }
     private void youLostMessage() {
+        try {
+            playAudio(loseAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         int input = JOptionPane.showConfirmDialog(new JFrame(),"That stunk, you're crap loser."
                         + "\n Would you like to play again?"
                 , "You Lost",
@@ -324,7 +362,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myBetButton4.addActionListener(e -> betButtonAction(myBet4));
         myBetButton5.addActionListener(e -> betButtonAction(myBet5));
         myBetButton6.addActionListener(e -> betButtonAction(myBet6));
-        startItem.addActionListener(e -> start());
+        startItem.addActionListener(e -> {
+            start();
+        });
         resetItem.addActionListener(e -> reset());
         playAgainItem.addActionListener(e -> playAgain());
         exitItem.addActionListener(e -> exit());
@@ -338,9 +378,27 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         setWallet(getWallet());
         setEnableBetButtons(true);
         setWalletTextFieldEditable(true);
-    }
 
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
+    }
     private void reset() {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         myRollField.setText(String.valueOf(0));
         setEnableBetButtons(false);
         setWalletTextFieldEditable(false);
@@ -350,6 +408,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void playAgain() {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         myRollField.setText(String.valueOf(0));
         setEnableBetButtons(true);
         setWalletTextFieldEditable(true);
@@ -358,6 +425,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void exit() {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         int input = JOptionPane.showConfirmDialog(
                 new JFrame(),
                 "It would stink if you left. " +
@@ -372,6 +448,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void about() {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         JOptionPane.showMessageDialog(
                 new JFrame(),
                 "Author: Caleb Krauter -> App version 1.0",
@@ -381,6 +466,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void rules() {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         JOptionPane.showMessageDialog(
                 new JFrame(),
                 "The rules of the Game of craps are as follows:\n" +
@@ -400,6 +494,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void betButtonAction(int theBet) {
+        try {
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
         updateWalletAfterBet(theBet);
         setEnableRollButton(true);
         setWalletTextFieldEditable(false);
@@ -423,6 +526,17 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void rollButtonAction() {
+        try {
+            playAudio(diceAudio);
+            playAudio(buttonAudio);
+        } catch (LineUnavailableException e) {
+            audioError();
+        } catch (IOException e) {
+            audioError();
+        } catch (UnsupportedAudioFileException e) {
+            audioError();
+        }
+
         gameLogic.setWinValue(false);
         setMyRandomNum1();
         setMyRandomNum2();
@@ -460,6 +574,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             youLostMessage();
         }
     }
+
     private void walletInputAction() {
         if (!(myWalletField.getText().isBlank())) {
             try {
@@ -476,6 +591,24 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 setWallet(1);
             }
         }
+    }
+    private void audioError() {
+        JOptionPane.showConfirmDialog(new JFrame(), "Audio Error. Game Shutting Down.");
+        System.exit(0);
+    }
+
+    private void playMusic() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(music));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
+    }
+
+    private void playAudio(String theAudio) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(theAudio));
+        Clip clip = AudioSystem.getClip();
+        clip.open(audioStream);
+        clip.start();
     }
 
     private void setWallet(int theCurrentCash) {
