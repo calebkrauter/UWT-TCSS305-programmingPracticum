@@ -1,46 +1,63 @@
 package controller;
 
 import model.GameLogic;
-import view.*;
-
-import javax.print.attribute.standard.Media;
-import javax.sound.sampled.*;
-import javax.sound.sampled.spi.AudioFileReader;
-import javax.swing.*;
-import java.awt.*;
+import view.CenterPanel;
+import view.DicePanel;
+import view.DrawDice;
+import view.LeftPanel;
+import view.RightPanel;
+import view.TitlePanel;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import java.awt.Color;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import java.util.InputMismatchException;
-
 import static java.awt.event.KeyEvent.*;
 
 public class CrapsController extends JPanel implements PropertyChangeListener {
     private static String myCount = String.valueOf(0);
-    private static final String music = "src/controller/music.wav";
-    private static final String diceAudio = "src/controller/diceRoll.wav";
-    private static final String winAudio = "src/controller/winAudio.wav";
-    private static final String loseAudio = "src/controller/loseAudio.wav";
-    private static final String buttonAudio = "src/controller/buttonAudio.wav";
+    private static final String MUSIC = "src/controller/music.wav";
+    private static final String DICE_AUDIO = "src/controller/diceRoll.wav";
+    private static final String WIN_AUDIO = "src/controller/winAudio.wav";
+    private static final String LOSE_AUDIO = "src/controller/loseAudio.wav";
+    private static final String BUTTON_AUDIO = "src/controller/buttonAudio.wav";
     private int myRandomRoll2;
     private int myPlayerWins;
     private int myHouseWins;
     private int myPlayerScore;
     private int myRollValue = 0;
-    private final static int myBet1 = 1;
-    private final static int myBet2 = 5;
-    private final static int myBet3 = 10;
-    private final static int myBet4 = 50;
-    private final static int myBet5 = 100;
-    private final static int myBet6 = 500;
+    private static final int BET_1 = 1;
+    private static final int BET_2 = 5;
+    private static final int BET_3 = 10;
+    private static final int BET_4 = 50;
+    private static final int BET_5 = 100;
+    private static final int BET_6 = 500;
     private int myRandomRoll1;
-    private static final Color myCenterPanelColor = Color.decode("#FF8383");
-    private static final Color myLeftPanelColor = Color.decode("#D9D8C0");
-    private static final Color myRightPanelColor = Color.decode("#97D0E3");
-    private static final Color myBackgroundPanelColor = Color.decode("#B97A57");
+    private static final Color CENTER_PANEL_COLOR = Color.decode("#FF8383");
+    private static final Color LEFT_PANEL_COLOR = Color.decode("#D9D8C0");
+    private static final Color RIGHT_PANEL_COLOR = Color.decode("#97D0E3");
+    private static final Color BACKGROUND_PANEL_COLOR = Color.decode("#B97A57");
     private DrawDice drawDice;
     private GameLogic gameLogic;
     private final JPanel myRightPanel;
@@ -52,15 +69,15 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private final LeftPanel leftPanel;
     private final RightPanel rightPanel;
     private final TitlePanel titlePanel;
-    private static final ImageIcon myImage = new ImageIcon("src/controller/poopy.png");
-    private static final ImageIcon myImageIcon = new ImageIcon("src/controller/poopyIcon.png");
-    private static final ImageIcon myExitImageIcon = new ImageIcon("src/controller/poopyIconSad.png");
-    private static final JLabel titleImageLabel = new JLabel(myImage);
-    private static final JLabel myPlayerWinsLabel = new JLabel("Player Wins: ");
-    private static final JLabel myHouseWinsLabel = new JLabel("House Wins: ");
-    private static final JLabel myScoreLabel = new JLabel("Players Score: ");
-    private static final JLabel mySumLabel = new JLabel("TOTAL: ");
-    private static final JLabel myWalletLabel = new JLabel("Wallet: ");
+    private static final ImageIcon POOPY_IMAGE_BANNER = new ImageIcon("src/controller/poopy.png");
+    private static final ImageIcon POOPY_IMAGE_ICON = new ImageIcon("src/controller/poopyIcon.png");
+    private static final ImageIcon SAD_POOPY_IMAGE = new ImageIcon("src/controller/poopyIconSad.png");
+    private static final JLabel TITLE_IMAGE_LABEL = new JLabel(POOPY_IMAGE_BANNER);
+    private static final JLabel PLAYER_WINS_LABEL = new JLabel("Player Wins: ");
+    private static final JLabel HOUSE_WINS_LABEL = new JLabel("House Wins: ");
+    private static final JLabel SCORE_LABEL = new JLabel("Players Score: ");
+    private static final JLabel SUM_LABEL = new JLabel("TOTAL: ");
+    private static final JLabel WALLET_LABEL = new JLabel("Wallet: ");
     private JTextField myPlayerWinsField = new JTextField(myCount);
     private JTextField myHouseWinsField = new JTextField(myCount);
     private JTextField myScoreField = new JTextField(myCount);
@@ -73,13 +90,13 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private GridBagConstraints myCenterPanelConstraints;
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
-    private static final JButton myRollButton = new JButton("Roll");
-    private JButton myBetButton1 = new JButton(intToMoneyString(myBet1));
-    private JButton myBetButton2 = new JButton(intToMoneyString(myBet2));
-    private JButton myBetButton3 = new JButton(intToMoneyString(myBet3));
-    private JButton myBetButton4 = new JButton(intToMoneyString(myBet4));
-    private JButton myBetButton5 = new JButton(intToMoneyString(myBet5));
-    private JButton myBetButton6 = new JButton(intToMoneyString(myBet6));
+    private static final JButton ROLL_BUTTON = new JButton("Roll");
+    private JButton myBetButton1 = new JButton(intToMoneyString(BET_1));
+    private JButton myBetButton2 = new JButton(intToMoneyString(BET_2));
+    private JButton myBetButton3 = new JButton(intToMoneyString(BET_3));
+    private JButton myBetButton4 = new JButton(intToMoneyString(BET_4));
+    private JButton myBetButton5 = new JButton(intToMoneyString(BET_5));
+    private JButton myBetButton6 = new JButton(intToMoneyString(BET_6));
     private JButton myPlayAgainButton = new JButton("Play Again");
     private static JMenuBar menuBar = new JMenuBar();
     private final JMenu gameMenu;
@@ -91,7 +108,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     private final JMenuItem rulesItem;
     private final JMenuItem aboutItem;
     private static boolean myBetButtonEnabled = false;
-    public JFrame myJFrame;
+    private static JFrame myJFrame;
 
     public CrapsController() {
 
@@ -125,8 +142,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 myBackgroundPanel,
                 myRightPanel,
                 myRightPanelConstraints,
-                myJFrame,
-                myWalletLabel,
+                WALLET_LABEL,
                 myWalletField,
                 myBetButton1,
                 myBetButton2,
@@ -140,40 +156,37 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 myBackgroundPanel,
                 myLeftPanel,
                 myLeftPanelConstraints,
-                myJFrame,
                 myPlayerWinsField,
                 myHouseWinsField,
                 myScoreField,
-                myPlayerWinsLabel,
-                myHouseWinsLabel,
-                myScoreLabel,
+                PLAYER_WINS_LABEL,
+                HOUSE_WINS_LABEL,
+                SCORE_LABEL,
                 SCREEN_SIZE, myPlayAgainButton);
         centerPanel = new CenterPanel(
                 new GridBagLayout(),
                 myBackgroundPanel,
                 myCenterPanel,
                 myCenterPanelConstraints,
-                myJFrame,
                 myRollField,
-                mySumLabel,
-                myRollButton,
+                SUM_LABEL,
+                ROLL_BUTTON,
                 SCREEN_SIZE);
         titlePanel = new TitlePanel(
                 new GridBagLayout(),
                 myBackgroundPanel,
-                titleImageLabel,
+                TITLE_IMAGE_LABEL,
                 myTitlePanelConstraints,
-                myJFrame,
                 SCREEN_SIZE);
 
         //Set background colors
-        myBackgroundPanel.setBackground(myBackgroundPanelColor);
-        drawDice.setBackground(myCenterPanelColor);
-        myRightPanel.setBackground(myRightPanelColor);
-        myLeftPanel.setBackground(myLeftPanelColor);
-        myCenterPanel.setBackground(myCenterPanelColor);
-        rightPanel.setBackground(myRightPanelColor);
-        leftPanel.setBackground(myLeftPanelColor);
+        myBackgroundPanel.setBackground(BACKGROUND_PANEL_COLOR);
+        drawDice.setBackground(CENTER_PANEL_COLOR);
+        myRightPanel.setBackground(RIGHT_PANEL_COLOR);
+        myLeftPanel.setBackground(LEFT_PANEL_COLOR);
+        myCenterPanel.setBackground(CENTER_PANEL_COLOR);
+        rightPanel.setBackground(RIGHT_PANEL_COLOR);
+        leftPanel.setBackground(LEFT_PANEL_COLOR);
         titlePanel.setOpaque(true);
 
         myPlayerWinsField.setEditable(false);
@@ -204,7 +217,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 rulesItem,
                 aboutItem,
                 playAgainItem,
-                myRollButton,
+                ROLL_BUTTON,
                 myBetButton1,
                 myBetButton2,
                 myBetButton3,
@@ -269,7 +282,6 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
            badInputError();
        }
 
-
     }
 
     private void badInputError() {
@@ -280,7 +292,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
     private void youWonMessage() {
         try {
-            playAudio(winAudio);
+            playAudio(WIN_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -300,7 +312,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
     private void youLostMessage() {
         try {
-            playAudio(loseAudio);
+            playAudio(LOSE_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -319,7 +331,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
     }
 
-    public void loadGui() {
+    void loadGui() {
         myJFrame.setLocation(SCREEN_SIZE.width / 2 - myJFrame.getWidth() / 2,
                 SCREEN_SIZE.height / 2 - myJFrame.getHeight() / 2);
         myJFrame.pack();
@@ -327,7 +339,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myJFrame.setSize(850, 850);
         myJFrame.setMinimumSize(new Dimension(750, 750));
         myJFrame.add(myBackgroundPanel);
-        myJFrame.setIconImage(myImageIcon.getImage());
+        myJFrame.setIconImage(POOPY_IMAGE_ICON.getImage());
         myJFrame.setJMenuBar(menuBar);
         myJFrame.setVisible(true);
 
@@ -355,13 +367,13 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
         myWalletField.addKeyListener(newKeyAction);
 
-        myRollButton.addActionListener(e -> rollButtonAction());
-        myBetButton1.addActionListener(e -> betButtonAction(myBet1));
-        myBetButton2.addActionListener(e -> betButtonAction(myBet2));
-        myBetButton3.addActionListener(e -> betButtonAction(myBet3));
-        myBetButton4.addActionListener(e -> betButtonAction(myBet4));
-        myBetButton5.addActionListener(e -> betButtonAction(myBet5));
-        myBetButton6.addActionListener(e -> betButtonAction(myBet6));
+        ROLL_BUTTON.addActionListener(e -> rollButtonAction());
+        myBetButton1.addActionListener(e -> betButtonAction(BET_1));
+        myBetButton2.addActionListener(e -> betButtonAction(BET_2));
+        myBetButton3.addActionListener(e -> betButtonAction(BET_3));
+        myBetButton4.addActionListener(e -> betButtonAction(BET_4));
+        myBetButton5.addActionListener(e -> betButtonAction(BET_5));
+        myBetButton6.addActionListener(e -> betButtonAction(BET_6));
         startItem.addActionListener(e -> {
             start();
         });
@@ -380,7 +392,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         setWalletTextFieldEditable(true);
 
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -391,7 +403,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
     private void reset() {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -409,7 +421,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     private void playAgain() {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -426,7 +438,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     private void exit() {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -441,7 +453,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 "DON'T LEAVE YOU IDIOT",
                 JOptionPane.YES_OPTION,
                 JOptionPane.NO_OPTION,
-                myExitImageIcon);
+                SAD_POOPY_IMAGE);
         if (input == 0) {
             System.exit(0);
         }
@@ -449,7 +461,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     private void about() {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -462,12 +474,12 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 "Author: Caleb Krauter -> App version 1.0",
                 "About",
                 JOptionPane.DEFAULT_OPTION,
-                myImageIcon);
+                POOPY_IMAGE_ICON);
     }
 
     private void rules() {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -490,12 +502,12 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                         "-If they roll a 7 before rolling the point value they got on" +
                         " the first roll the roller/player loses (the 'house' wins).", "Rules",
                 JOptionPane.DEFAULT_OPTION,
-                myImageIcon);
+                POOPY_IMAGE_ICON);
     }
 
     private void betButtonAction(int theBet) {
         try {
-            playAudio(buttonAudio);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -527,8 +539,8 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     private void rollButtonAction() {
         try {
-            playAudio(diceAudio);
-            playAudio(buttonAudio);
+            playAudio(DICE_AUDIO);
+            playAudio(BUTTON_AUDIO);
         } catch (LineUnavailableException e) {
             audioError();
         } catch (IOException e) {
@@ -543,7 +555,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         drawDice.setRandomNum1(getMyRandomRoll1());
         drawDice.setRandomNum2(getMyRandomRoll2());
         drawDice.repaint();
-        drawDice.setBackground(myCenterPanelColor);
+        drawDice.setBackground(CENTER_PANEL_COLOR);
         setRollTotal();
         myRollField.setText(String.valueOf(getMyRollTotal()));
         gameLogic.scoreLogic();
@@ -598,7 +610,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void playMusic() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(music));
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(MUSIC));
         Clip clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
@@ -616,7 +628,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myWalletField.setText(String.valueOf(getWallet()));
     }
 
-    public void setPlayerScore(int theScore) {
+    private void setPlayerScore(int theScore) {
         gameLogic.setPlayerScore(theScore);
         myPlayerScore = gameLogic.getPlayerScore();
     }
@@ -637,7 +649,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
     }
 
     private void setEnableRollButton(boolean theValue) {
-        myRollButton.setEnabled(theValue);
+        ROLL_BUTTON.setEnabled(theValue);
     }
 
     private void setWalletTextFieldEditable(boolean theValue) {
@@ -652,7 +664,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myHouseWins = gameLogic.getHouseWins();
     }
 
-    public void setPlayerScore() {
+    private void setPlayerScore() {
         myPlayerScore = gameLogic.getPlayerScore();
     }
 
@@ -710,15 +722,16 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         return gameLogic.getWallet();
     }
 
-    public int getPlayerWins() {
+    private int getPlayerWins() {
         return myPlayerWins;
     }
 
-    public int getHouseWins() {
+
+    private int getHouseWins() {
         return myHouseWins;
     }
 
-    public int getPlayerScore() {
+    private int getPlayerScore() {
         return myPlayerScore;
     }
 

@@ -1,23 +1,41 @@
 package view;
 
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 public class TitlePanel extends JPanel {
+    private final JPanel myBackgroundPanel;
+    private final JLabel myTitleImageLabel;
+    private final GridBagConstraints myTitleConstraints;
     private static Dimension myScreenSize;
-    public TitlePanel(GridBagLayout gridBagLayout, JPanel p1, JLabel l1, GridBagConstraints constraints, JFrame jFrame, Dimension theScreenSize) {
+    public TitlePanel(GridBagLayout theGridBagLayout,
+                      JPanel theBackgroundPanel,
+                      JLabel theTitleImageLabel,
+                      GridBagConstraints theTitleConstraints,
+                      Dimension theScreenSize) {
+
+        super(theGridBagLayout);
+        myBackgroundPanel = theBackgroundPanel;
+        myTitleImageLabel = theTitleImageLabel;
+        myTitleConstraints = theTitleConstraints;
+
         myScreenSize = theScreenSize;
-        constraints.ipady = 0;
-        constraints.ipadx = (int) myScreenSize.getWidth();
-        constraints.insets = new Insets(0, 0,0, 0);
-        constraints.weightx = 1;
-        constraints.weighty = 1;
-        constraints.anchor = GridBagConstraints.PAGE_START;
-        constraints.gridx = 1;
-        constraints.gridy = 0;
-        constraints.gridwidth = 2;
-        constraints.gridheight = 2;
-        p1.add(l1, constraints);
+       myTitleConstraints.ipady = 0;
+       myTitleConstraints.ipadx = (int) myScreenSize.getWidth();
+       myTitleConstraints.insets = new Insets(0, 0,0, 0);
+       myTitleConstraints.weightx = 1;
+       myTitleConstraints.weighty = 1;
+       myTitleConstraints.anchor = GridBagConstraints.PAGE_START;
+       myTitleConstraints.gridx = 1;
+       myTitleConstraints.gridy = 0;
+       myTitleConstraints.gridwidth = 2;
+       myTitleConstraints.gridheight = 2;
+        myBackgroundPanel.add(theTitleImageLabel, myTitleConstraints);
     }
 }

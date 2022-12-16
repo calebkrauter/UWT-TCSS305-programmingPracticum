@@ -3,26 +3,28 @@ package view;
 import javax.swing.*;
 import java.awt.*;
 
-public class CenterPanel {
+public class CenterPanel extends JPanel{
 
-    private static GridBagLayout myGridBagLayout;
     private static JPanel myBackgroundPanel;
     private static JPanel myCenterPanel;
     private static GridBagConstraints myConstraints;
-    private static JFrame myJFrame;
     private static JTextField myTextField4;
     private static JLabel mySum;
     private static JButton myRollButton;
     private static Dimension myScreenSize;
-    public CenterPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
-                       JPanel theCenterPanel, GridBagConstraints theConstraints,
-                       JFrame theJFrame, JTextField theTextField4, JLabel theSum, JButton theRollButton, Dimension theScreenSize) {
+    public CenterPanel(GridBagLayout theGridBagLayout,
+                       JPanel theBackgroundPanel,
+                       JPanel theCenterPanel,
+                       GridBagConstraints theConstraints,
+                       JTextField theTextField4,
+                       JLabel theSum,
+                       JButton theRollButton,
+                       Dimension theScreenSize) {
+        super(theGridBagLayout);
 
-        myGridBagLayout = theGridBagLayout;
         myBackgroundPanel = theBackgroundPanel;
         myCenterPanel = theCenterPanel;
         myConstraints = theConstraints;
-        myJFrame = theJFrame;
         myTextField4 = theTextField4;
         mySum = theSum;
         myRollButton = theRollButton;
@@ -34,9 +36,6 @@ public class CenterPanel {
         myRollButton.setEnabled(true);
     }
 
-//    public void setMyTextField4(int theTotal) {
-//        myTextField4.setText(String.valueOf(theTotal));
-//    }
     private void centerPanel() {
         myConstraints.ipady = (int) myScreenSize.getHeight();
         myConstraints.ipadx = (int) myScreenSize.getWidth();

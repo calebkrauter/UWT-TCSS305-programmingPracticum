@@ -4,11 +4,14 @@
     <checkstyleVersion>10.3.4</checkstyleVersion>
     <scanScope>JavaOnly</scanScope>
     <option name="thirdPartyClasspath" />
-    <option name="activeLocationIds" />
+    <option name="activeLocationIds">
+      <option value="6ab04dc2-3bcc-43d2-9d37-d4c320306763" />
+    </option>
     <option name="locations">
       <list>
         <ConfigurationLocation id="bundled-sun-checks" type="BUNDLED" scope="All" description="Sun Checks">(bundled)</ConfigurationLocation>
         <ConfigurationLocation id="bundled-google-checks" type="BUNDLED" scope="All" description="Google Checks">(bundled)</ConfigurationLocation>
+        <ConfigurationLocation id="6ab04dc2-3bcc-43d2-9d37-d4c320306763" type="LOCAL_FILE" scope="All" description="305">$PROJECT_DIR$/../krauter1-coloradjuster/support_files/tcss305_checkstyle_sameline.xml</ConfigurationLocation>
       </list>
     </option>
   </component>

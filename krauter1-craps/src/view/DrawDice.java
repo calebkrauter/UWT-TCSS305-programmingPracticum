@@ -1,18 +1,17 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JPanel;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.LayoutManager;
 
-// Todo remove unnecessary calculations for myx and myy from craps controller.
 public class DrawDice extends JPanel {
-
-    private int myX;
-    private int myY;
-    private int myX1 = 0;
-    private int myY1 = 50;
-    private int myY2 = 200;
-    private static final int myDieSide = 100;
-    private static final int myDotDiameter = 10;
+    private final int myX = 0;
+    private final int myY1 = 50;
+    private final int myY2 = 200;
+    private static final int DIE_SIDE = 100;
+    private static final int DOT_DIAMETER = 10;
     private int myRandNum1;
     private int myRandNum2;
     private Graphics myGraphics;
@@ -46,10 +45,10 @@ public class DrawDice extends JPanel {
         g2D = (Graphics2D) myGraphics;
 
         g2D.setPaint(Color.WHITE);
-        g2D.fill3DRect(myX, myY1, myDieSide, myDieSide, true);
+        g2D.fill3DRect(myX, myY1, DIE_SIDE, DIE_SIDE, true);
 
         g2D.setPaint(Color.WHITE);
-        g2D.fill3DRect(myX, myY2, myDieSide, myDieSide, true);
+        g2D.fill3DRect(myX, myY2, DIE_SIDE, DIE_SIDE, true);
 
         chooseSideDie1();
         chooseSideDie2();
@@ -76,112 +75,112 @@ public class DrawDice extends JPanel {
 
     private void drawSide1Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY1 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY1 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide2Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide3Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY1 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY1 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide4Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide5Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY1 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY1 + 45, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide6Die1(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY1 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY1 + 45, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY1 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY1 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
 
 
     private void drawSide1Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY2 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY2 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide2Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide3Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY2 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY2 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide4Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide5Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(45, myY2 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(45, myY2 + 45, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
     }
     private void drawSide6Die2(){
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 15, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 15, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 75, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 75, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(15, myY2 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(15, myY2 + 45, DOT_DIAMETER, DOT_DIAMETER);
         g2D.setPaint(Color.BLACK);
-        g2D.fillOval(75, myY2 + 45, myDotDiameter, myDotDiameter);
+        g2D.fillOval(75, myY2 + 45, DOT_DIAMETER, DOT_DIAMETER);
     }
 }

@@ -8,7 +8,6 @@ public class LeftPanel extends JPanel{
     private static JPanel myBackgroundPanel;
     private static JPanel myLeftPanel;
     private static GridBagConstraints myConstraints;
-    private static JFrame myJFrame;
     private static JTextField myTextField1;
     private static JTextField myTextField2;
     private static JTextField myTextField3;
@@ -18,18 +17,24 @@ public class LeftPanel extends JPanel{
     private static Dimension myScreenSize;
     private static JButton myPlayAgainButton;
 
-    public LeftPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel, JPanel theLeftPanel,
-                     GridBagConstraints theConstraints, JFrame theJFrame,
-                     JTextField theTextField1, JTextField theTextField2,
-                     JTextField theTextField3, JLabel thePlayerWins, JLabel theHouseWins,
-                     JLabel thePoints, Dimension theScreenSize, JButton thePlayAgainButton) {
+    public LeftPanel(GridBagLayout theGridBagLayout,
+                     JPanel theBackgroundPanel,
+                     JPanel theLeftPanel,
+                     GridBagConstraints theConstraints,
+                     JTextField theTextField1,
+                     JTextField theTextField2,
+                     JTextField theTextField3,
+                     JLabel thePlayerWins,
+                     JLabel theHouseWins,
+                     JLabel thePoints,
+                     Dimension theScreenSize,
+                     JButton thePlayAgainButton) {
 
         super(theGridBagLayout);
 
         myBackgroundPanel = theBackgroundPanel;
         myLeftPanel = theLeftPanel;
         myConstraints = theConstraints;
-        myJFrame = theJFrame;
         myTextField1 = theTextField1;
         myTextField2 = theTextField2;
         myTextField3 = theTextField3;
@@ -44,8 +49,7 @@ public class LeftPanel extends JPanel{
         button();
     }
     private void leftPanel() {
-        //Add panel three to panel 1 full of buttons and labels
-        // TODO fix bandid that makes left panel big enough by using multiplier
+        // Panel
         myConstraints.ipady = (int) myScreenSize.getHeight();
         myConstraints.ipadx = 115;
         myConstraints.anchor = GridBagConstraints.FIRST_LINE_START;

@@ -6,11 +6,26 @@ import static java.awt.event.KeyEvent.*;
 
 public class Shortcuts {
 
-    public Shortcuts(JMenuItem startItem,
-                     JMenuItem resetItem,
-                     JMenuItem exitItem,
-                     JMenuItem rulesItem,
-                     JMenuItem aboutItem,
+    private final JMenuItem myStartItem;
+    private final JMenuItem myResetItem;
+    private final JMenuItem myExitItem;
+    private final JMenuItem myRulesItem;
+    private final JMenuItem myAboutItem;
+    private final JMenuItem myPlayAgainItem;
+    private final JButton myRollButton;
+    private final JButton myBetButton1;
+    private final JButton myBetButton2;
+    private final JButton myBetButton3;
+    private final JButton myBetButton4;
+    private final JButton myBetButton5;
+    private final JButton myBetButton6;
+    private final JButton myPlayAgainbutton;
+
+    public Shortcuts(JMenuItem theStartItem,
+                     JMenuItem theResetItem,
+                     JMenuItem theExitItem,
+                     JMenuItem theRulesItem,
+                     JMenuItem theAboutItem,
                      JMenuItem thePlayAgainItem,
                      JButton theRollButton,
                      JButton theBetButton1,
@@ -20,19 +35,33 @@ public class Shortcuts {
                      JButton theBetButton5,
                      JButton theBetButton6,
                      JButton thePlayAgainButton) {
+        myStartItem = theStartItem;
+        myResetItem = theResetItem;
+        myExitItem = theExitItem;
+        myRulesItem = theRulesItem;
+        myAboutItem = theAboutItem;
+        myPlayAgainItem = thePlayAgainItem;
+        myRollButton = theRollButton;
+        myBetButton1 = theBetButton1;
+        myBetButton2 = theBetButton2;
+        myBetButton3 = theBetButton3;
+        myBetButton4 = theBetButton4;
+        myBetButton5 = theBetButton5;
+        myBetButton6 = theBetButton6;
+        myPlayAgainbutton = thePlayAgainButton;
 
-        startItem.setToolTipText("press 'Alt/Option' + 'S'");
-        startItem.setAccelerator(KeyStroke.getKeyStroke(VK_S, ActionEvent.ALT_MASK));
-        resetItem.setToolTipText("press 'Alt/Option' + X'");
-        resetItem.setAccelerator(KeyStroke.getKeyStroke(VK_X, ActionEvent.ALT_MASK));
-        thePlayAgainItem.setToolTipText("press 'Alt/Option' + 'P'");
-        thePlayAgainItem.setAccelerator(KeyStroke.getKeyStroke(VK_P, ActionEvent.ALT_MASK));
-        exitItem.setToolTipText("press 'Alt/Option' + 'C'");
-        exitItem.setAccelerator(KeyStroke.getKeyStroke(VK_C, ActionEvent.ALT_MASK));
-        aboutItem.setToolTipText("press 'Alt/Option' + 'A'");
-        aboutItem.setAccelerator(KeyStroke.getKeyStroke(VK_A, ActionEvent.ALT_MASK));
-        rulesItem.setToolTipText("press 'Alt/Option' + 'I'");
-        rulesItem.setAccelerator(KeyStroke.getKeyStroke(VK_I, ActionEvent.ALT_MASK));
+        myStartItem.setToolTipText("press 'Alt/Option' + 'S'");
+        myStartItem.setAccelerator(KeyStroke.getKeyStroke(VK_S, ActionEvent.ALT_MASK));
+        myResetItem.setToolTipText("press 'Alt/Option' + X'");
+        myResetItem.setAccelerator(KeyStroke.getKeyStroke(VK_X, ActionEvent.ALT_MASK));
+        myExitItem.setToolTipText("press 'Alt/Option' + 'C'");
+        myExitItem.setAccelerator(KeyStroke.getKeyStroke(VK_C, ActionEvent.ALT_MASK));
+        myRulesItem.setToolTipText("press 'Alt/Option' + 'I'");
+        myRulesItem.setAccelerator(KeyStroke.getKeyStroke(VK_I, ActionEvent.ALT_MASK));
+        myAboutItem.setToolTipText("press 'Alt/Option' + 'A'");
+        myAboutItem.setAccelerator(KeyStroke.getKeyStroke(VK_A, ActionEvent.ALT_MASK));
+        myPlayAgainItem.setToolTipText("press 'Alt/Option' + 'P'");
+        myPlayAgainItem.setAccelerator(KeyStroke.getKeyStroke(VK_P, ActionEvent.ALT_MASK));
 
         theRollButton.setToolTipText("press 'Alt/Option+Control' + 'D'");
         theRollButton.setMnemonic(VK_D);

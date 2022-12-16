@@ -1,18 +1,22 @@
 package view;
 
-import javax.swing.*;
-import java.awt.*;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import java.awt.Dimension;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
+import java.awt.Insets;
 
 public class RightPanel extends JPanel {
 
     private static JPanel myBackgroundPanel;
     private static JPanel myRightPanel;
     private static GridBagConstraints myConstraints;
-    private static JFrame myJFrame;
     private static JLabel myWalletLabel;
     private static JTextField myTextField5;
 
-    private static JButton myBetButton;
     private static JButton myBetAmount1;
     private static JButton myBetAmount2;
     private static JButton myBetAmount3;
@@ -20,22 +24,26 @@ public class RightPanel extends JPanel {
     private static JButton myBetAmount5;
     private static JButton myBetAmount6;
     private static Dimension myScreenSize;
-    // TODO - Rename buttons
-    // TODO - make buttons same sized...
-    // TODO - UPDATE use ipadx and ipady or use setsize...
 
-    public RightPanel(GridBagLayout theGridBagLayout, JPanel theBackgroundPanel,
-                      JPanel theRightPanel, GridBagConstraints theConstraints,
-                      JFrame theJFrame, JLabel theWalletLabel, JTextField theTextField5,
-                      JButton theBetAmount1, JButton theBetAmount2, JButton theBetAmount3,
-                      JButton theBetAmount4, JButton theBetAmount5, JButton theBetAmount6, Dimension theScreenSize) {
+    public RightPanel(GridBagLayout theGridBagLayout,
+                      JPanel theBackgroundPanel,
+                      JPanel theRightPanel,
+                      GridBagConstraints theConstraints,
+                      JLabel theWalletLabel,
+                      JTextField theTextField5,
+                      JButton theBetAmount1,
+                      JButton theBetAmount2,
+                      JButton theBetAmount3,
+                      JButton theBetAmount4,
+                      JButton theBetAmount5,
+                      JButton theBetAmount6,
+                      Dimension theScreenSize) {
 
         super(theGridBagLayout);
 
         myBackgroundPanel = theBackgroundPanel;
         myRightPanel = theRightPanel;
         myConstraints = theConstraints;
-        myJFrame = theJFrame;
         myWalletLabel = theWalletLabel;
         myTextField5 = theTextField5;
         myBetAmount1 = theBetAmount1;
@@ -100,7 +108,6 @@ public class RightPanel extends JPanel {
     }
 
     private void betButtons() {
-
         // Bet button amount 1
         myConstraints.ipadx = 40;
         myConstraints.ipady = 20;
