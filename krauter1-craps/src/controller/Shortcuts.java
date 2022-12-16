@@ -6,19 +6,74 @@ import static java.awt.event.KeyEvent.*;
 
 public class Shortcuts {
 
+    /**
+     * The start item on the game menu.
+     */
     private final JMenuItem myStartItem;
+
+    /**
+     * The reset item on the game menu.
+     */
     private final JMenuItem myResetItem;
+
+    /**
+     * The exit item on the game menu.
+     */
     private final JMenuItem myExitItem;
+
+    /**
+    * The rules item on the game menu.
+    */
     private final JMenuItem myRulesItem;
+
+    /**
+     * The about item on the game menu.
+     */
     private final JMenuItem myAboutItem;
+
+    /**
+     * The play again item on the game menu.
+     */
     private final JMenuItem myPlayAgainItem;
+
+    /**
+     * The rules item on the game menu.
+     */
     private final JButton myRollButton;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton1;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton2;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton3;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton4;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton5;
+
+    /**
+     * A bet button item on the game menu.
+     */
     private final JButton myBetButton6;
+
+    /**
+     * The play again button item on the game menu.
+     */
     private final JButton myPlayAgainbutton;
 
     public Shortcuts(JMenuItem theStartItem,
@@ -63,21 +118,21 @@ public class Shortcuts {
         myPlayAgainItem.setToolTipText("press 'Alt/Option' + 'P'");
         myPlayAgainItem.setAccelerator(KeyStroke.getKeyStroke(VK_P, ActionEvent.ALT_MASK));
 
-        theRollButton.setToolTipText("press 'Alt/Option+Control' + 'D'");
-        theRollButton.setMnemonic(VK_D);
-        theBetButton1.setToolTipText("press 'Alt/Option+Control' + '1'");
-        theBetButton1.setMnemonic(VK_1);
-        theBetButton2.setToolTipText("press 'Alt/Option+Control' + '2'");
-        theBetButton2.setMnemonic(VK_2);
-        theBetButton3.setToolTipText("press 'Alt/Option+Control' + '3'");
-        theBetButton3.setMnemonic(VK_3);
-        theBetButton4.setToolTipText("press 'Alt/Option+Control' + '4'");
-        theBetButton4.setMnemonic(VK_4);
-        theBetButton5.setToolTipText("press 'Alt/Option+Control' + '5'");
-        theBetButton5.setMnemonic(VK_5);
-        theBetButton6.setToolTipText("press 'Alt/Option+Control' + '6'");
-        theBetButton6.setMnemonic(VK_6);
-        thePlayAgainButton.setToolTipText("press 'Alt/Option' + 'O'");
-        thePlayAgainButton.setMnemonic(VK_O);
+        myRollButton.setToolTipText("press 'Alt/Option+Control' + 'D'");
+        myRollButton.setMnemonic(VK_D);
+        myBetButton1.setToolTipText("press 'Alt/Option+Control' + '1'");
+        myBetButton1.setMnemonic(VK_1);
+        myBetButton2.setToolTipText("press 'Alt/Option+Control' + '2'");
+        myBetButton2.setMnemonic(VK_2);
+        myBetButton3.setToolTipText("press 'Alt/Option+Control' + '3'");
+        myBetButton3.setMnemonic(VK_3);
+        myBetButton4.setToolTipText("press 'Alt/Option+Control' + '4'");
+        myBetButton4.setMnemonic(VK_4);
+        myBetButton5.setToolTipText("press 'Alt/Option+Control' + '5'");
+        myBetButton5.setMnemonic(VK_5);
+        myBetButton6.setToolTipText("press 'Alt/Option+Control' + '6'");
+        myBetButton6.setMnemonic(VK_6);
+        myPlayAgainbutton.setToolTipText("press 'Alt/Option' + 'O'");
+        myPlayAgainbutton.setMnemonic(VK_O);
     }
 }

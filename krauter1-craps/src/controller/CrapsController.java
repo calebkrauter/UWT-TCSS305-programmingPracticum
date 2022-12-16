@@ -35,81 +35,309 @@ import java.io.File;
 import java.io.IOException;
 import static java.awt.event.KeyEvent.*;
 
+/**
+ * This controller object acts as an intermediary between the view and the model.
+ * CrapsController listens for events, handles them, updates the model and view.
+ * CrapsController handles the heavy lifting when it comes to communicating data.
+ */
 public class CrapsController extends JPanel implements PropertyChangeListener {
+    /**
+     * myCount a String value used to initialize Jlabels.
+     */
     private static String myCount = String.valueOf(0);
+    /**
+     * MUSIC a string that represents the path to audio
+     */
     private static final String MUSIC = "src/controller/music.wav";
+    /**
+     * DICE_AUDIO a string that represents the path to audio
+     */
     private static final String DICE_AUDIO = "src/controller/diceRoll.wav";
+    /**
+     * WIN_AUDIO a string that represents the path to audio
+     */
     private static final String WIN_AUDIO = "src/controller/winAudio.wav";
+    /**
+     * LOSE_AUDIO a string that represents the path to audio
+     */
     private static final String LOSE_AUDIO = "src/controller/loseAudio.wav";
+    /**
+     * BUTTON_AUDIO a string that represents the path to audio
+     */
     private static final String BUTTON_AUDIO = "src/controller/buttonAudio.wav";
-    private int myRandomRoll2;
-    private int myPlayerWins;
-    private int myHouseWins;
-    private int myPlayerScore;
-    private int myRollValue = 0;
-    private static final int BET_1 = 1;
-    private static final int BET_2 = 5;
-    private static final int BET_3 = 10;
-    private static final int BET_4 = 50;
-    private static final int BET_5 = 100;
-    private static final int BET_6 = 500;
+    /**
+     * myRandomRoll1 an int that represents the value of a rolled die.
+     */
     private int myRandomRoll1;
+    /**
+     * myRandomRoll2 an int that represents the value of a rolled die.
+     */
+    private int myRandomRoll2;
+    /**
+     * myPlayerWins an int that represents the number of wins that the player has.
+     */
+    private int myPlayerWins;
+    /**
+     * myHouseWins an int that represents the number of wins that the house has.
+     */
+    private int myHouseWins;
+    /**
+     * myPlayerScore an int that represents the temporary score that the player has.
+     */
+    private int myPlayerScore;
+    /**
+     * myRollValue the sum the points from two rolled dice.
+     */
+    private int myRollValue = 0;
+    /**
+     * BET_1 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_1 = 1;
+    /**
+     * BET_2 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_2 = 5;
+    /**
+     * BET_3 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_3 = 10;
+    /**
+     *  BET_4 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_4 = 50;
+    /**
+     * BET_5 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_5 = 100;
+    /**
+     * BET_6 an int representing the amount of money that can be bet.
+     */
+    private static final int BET_6 = 500;
+
+    /**
+     * CENTER_PANEL_COLOR a Color value representing the color of a panel.
+     */
     private static final Color CENTER_PANEL_COLOR = Color.decode("#FF8383");
+    /**
+     * LEFT_PANEL_COLOR a Color value representing the color of a panel.
+     */
     private static final Color LEFT_PANEL_COLOR = Color.decode("#D9D8C0");
+    /**
+     * RIGHT_PANEL_COLOR a Color value representing the color of a panel.
+     */
     private static final Color RIGHT_PANEL_COLOR = Color.decode("#97D0E3");
+    /**
+     * BACKGROUND_PANEL_COLOR a Color value representing the color of a panel.
+     */
     private static final Color BACKGROUND_PANEL_COLOR = Color.decode("#B97A57");
+    /**
+     * drawDice an instance variable used to access an object where dice are drawn.
+     */
     private DrawDice drawDice;
+    /**
+     * gameLogic an instance variable used to access an object where game logic is used.
+     */
     private GameLogic gameLogic;
+    /**
+     * myRightPanel a JPanel used in the gui.
+     */
     private final JPanel myRightPanel;
+    /**
+     * myLeftPanel a JPanel used in the gui.
+     */
     private final JPanel myLeftPanel;
+    /**
+      myCenterPanel a JPanel used in the gui.
+     */
     private final JPanel myCenterPanel;
+    /**
+     * myBackgroundPanel a JPanel used in the gui.
+     */
     private final JPanel myBackgroundPanel;
+    /**
+     * dicePanel a DicePanel object used in the gui to house the dice.
+     */
     private final DicePanel dicePanel;
+    /**
+     * centerPanel a CenterPanel object used in the gui.
+     */
     private final CenterPanel centerPanel;
+    /**
+     *  leftPanel a LeftPanel object used in the gui.
+     */
     private final LeftPanel leftPanel;
+    /**
+     *  rightPanel a RightPanel object used in the gui.
+     */
     private final RightPanel rightPanel;
+    /**
+     * titlePanel a TitlePanel object used in the gui.
+     */
     private final TitlePanel titlePanel;
+    /**
+     * POOPY_IMAGE_BANNER is an ImageIcon.
+     */
     private static final ImageIcon POOPY_IMAGE_BANNER = new ImageIcon("src/controller/poopy.png");
+    /**
+     * POOPY_IMAGE_ICON is an ImageIcon.
+     */
     private static final ImageIcon POOPY_IMAGE_ICON = new ImageIcon("src/controller/poopyIcon.png");
+    /**
+     * SAD_POOPY_IMAGE is an ImageIcon.
+     */
     private static final ImageIcon SAD_POOPY_IMAGE = new ImageIcon("src/controller/poopyIconSad.png");
+    /**
+     * TITLE_IMAGE_LABEL is a JLabel used to house the title image.
+     */
     private static final JLabel TITLE_IMAGE_LABEL = new JLabel(POOPY_IMAGE_BANNER);
+    /**
+     * PLAYER_WINS_LABEL player wins.
+     */
     private static final JLabel PLAYER_WINS_LABEL = new JLabel("Player Wins: ");
+    /**
+     * HOUSE_WINS_LABEL house wins.
+     */
     private static final JLabel HOUSE_WINS_LABEL = new JLabel("House Wins: ");
+    /**
+     * SCORE_LABEL score.
+     */
     private static final JLabel SCORE_LABEL = new JLabel("Players Score: ");
+    /**
+     * SUM_LABEL total roll.
+     */
     private static final JLabel SUM_LABEL = new JLabel("TOTAL: ");
+    /**
+     * WALLET_LABEL wallet.
+     */
     private static final JLabel WALLET_LABEL = new JLabel("Wallet: ");
+    /**
+     * myPlayerWinsField text field to communicate wins.
+     */
     private JTextField myPlayerWinsField = new JTextField(myCount);
+    /**
+     * myHouseWinsField text field to communicate wins.
+     */
     private JTextField myHouseWinsField = new JTextField(myCount);
+    /**
+     * myScoreField text field to communicate score.
+     */
     private JTextField myScoreField = new JTextField(myCount);
+    /**
+     * myRollField text field to communicate roll total.
+     */
     private JTextField myRollField = new JTextField(String.valueOf(getMyRollTotal()));
+    /**
+     * myWalletField text field to communicate funds.
+     */
     private JTextField myWalletField = new JTextField(String.valueOf(0));
+    /**
+     * myTitlePanelConstraints gridBagConstraints for positioning and size.
+     */
     private GridBagConstraints myTitlePanelConstraints;
+    /**
+     * myDicePanelConstraints gridBagConstraints for positioning and size
+     */
     private GridBagConstraints myDicePanelConstraints;
+    /**
+     * myLeftPanelConstraints gridBagConstraints for positioning and size
+     */
     private GridBagConstraints myLeftPanelConstraints;
+    /**
+     * myRightPanelConstraints gridBagConstraints for positioning and size
+     */
     private GridBagConstraints myRightPanelConstraints;
+    /**
+     * myCenterPanelConstraints gridBagConstraints for positioning and size
+     */
     private GridBagConstraints myCenterPanelConstraints;
+    /**
+     * KIT used for getting info about screen size.
+     */
     private static final Toolkit KIT = Toolkit.getDefaultToolkit();
+    /**
+     * SCREEN_SIZE screen size.
+     */
     private static final Dimension SCREEN_SIZE = KIT.getScreenSize();
+    /**
+     * ROLL_BUTTON the roll button.
+     */
     private static final JButton ROLL_BUTTON = new JButton("Roll");
-    private JButton myBetButton1 = new JButton(intToMoneyString(BET_1));
-    private JButton myBetButton2 = new JButton(intToMoneyString(BET_2));
-    private JButton myBetButton3 = new JButton(intToMoneyString(BET_3));
-    private JButton myBetButton4 = new JButton(intToMoneyString(BET_4));
-    private JButton myBetButton5 = new JButton(intToMoneyString(BET_5));
-    private JButton myBetButton6 = new JButton(intToMoneyString(BET_6));
-    private JButton myPlayAgainButton = new JButton("Play Again");
+    /**
+     * myBetButton1 a bet button.
+     */
+    private final JButton myBetButton1 = new JButton(intToMoneyString(BET_1));
+    /**
+     * myBetButton2 a bet button.
+     */
+    private final JButton myBetButton2 = new JButton(intToMoneyString(BET_2));
+    /**
+     * myBetButton3 a bet button.
+     */
+    private final JButton myBetButton3 = new JButton(intToMoneyString(BET_3));
+    /**
+     * myBetButton4 a bet button.
+     */
+    private final JButton myBetButton4 = new JButton(intToMoneyString(BET_4));
+    /**
+     * myBetButton5 a bet button.
+     */
+    private final JButton myBetButton5 = new JButton(intToMoneyString(BET_5));
+    /**
+     * myBetButton6 a bet button.
+     */
+    private final JButton myBetButton6 = new JButton(intToMoneyString(BET_6));
+    /**
+     * myPlayAgainButton a play again button.
+     */
+    private final JButton myPlayAgainButton = new JButton("Play Again");
+    /**
+     * menuBar a menu bar.
+     */
     private static JMenuBar menuBar = new JMenuBar();
+    /**
+     * gameMenu a menu.
+     */
     private final JMenu gameMenu;
+    /**
+     * helpMenu a menu.
+     */
     private final JMenu helpMenu;
+    /**
+     * startItem a menu item.
+     */
     private final JMenuItem startItem;
+    /**
+     * resetItem a menu item.
+     */
     private final JMenuItem resetItem;
+    /**
+     * playAgainItem a menu item.
+     */
     private final JMenuItem playAgainItem;
+    /**
+     * exitItem a menu item.
+     */
     private final JMenuItem exitItem;
+    /**
+     * rulesItem a menu item.
+     */
     private final JMenuItem rulesItem;
+    /**
+     * aboutItem a menu item.
+     */
     private final JMenuItem aboutItem;
+    /**
+     * myBetButtonEnabled check if bet buttons are enabled.
+     */
     private static boolean myBetButtonEnabled = false;
+    /**
+     * myJFrame a JFrame.
+     */
     private static JFrame myJFrame;
 
+    /**
+     * The constructor.
+     */
     public CrapsController() {
 
         gameLogic = new GameLogic();
@@ -248,6 +476,11 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     }
 
+    /**
+     *
+     * @param theText bet value to be converted to string.
+     * @return string representation of integers as money.
+     */
     private String intToMoneyString(int theText) {
         StringBuilder stringBuilder = new StringBuilder();
         stringBuilder.append("$ ");
@@ -255,6 +488,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         return stringBuilder.toString();
     }
 
+    /**
+     * Adds menu components.
+     */
     private void addMenuComponents() {
         gameMenu.add(startItem);
         gameMenu.add(resetItem);
@@ -267,29 +503,39 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         menuBar.add(helpMenu);
     }
 
+    /**
+     * Creates the first JOptionPane for entering money into your wallet/bank.
+     */
     private void createStartJPane() {
 
         String myInput = JOptionPane.showInputDialog(new JFrame(),
                 "Enter a dollar amount to start game.", Integer.parseInt("0"));
 
-       try {
-           if (Integer.parseInt(myInput) <= 0) {
-               badInputError();
-           } else {
-               setWallet(Integer.parseInt(myInput));
-           }
-       } catch (NumberFormatException e) {
-           badInputError();
-       }
+        try {
+            if (Integer.parseInt(myInput) <= 0) {
+                badInputError();
+            } else {
+                setWallet(Integer.parseInt(myInput));
+            }
+        } catch (NumberFormatException e) {
+            badInputError();
+        }
 
     }
 
+    /**
+     * Displays a JOptionPane for a bad value.
+     */
     private void badInputError() {
         JOptionPane.showConfirmDialog(new JFrame(),
-                "Error - You may enter a new value when you start the game.",
+                "Error - There has been an error with the input that has been entered.",
                 "ERROR",
                 JOptionPane.DEFAULT_OPTION);
     }
+
+    /**
+     * Displays a JOptionPane for a player win.
+     */
     private void youWonMessage() {
         try {
             playAudio(WIN_AUDIO);
@@ -301,8 +547,8 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             audioError();
         }
         int input = JOptionPane.showConfirmDialog(new JFrame(),"You are so cool. Keep playing. "
-                + "You deserve to spend some money. "
-                + "\nYOU WON!" + "\nWould you like to play again?", "You Won",
+                        + "You deserve to spend some money. "
+                        + "\nYOU WON!" + "\nWould you like to play again?", "You Won",
                 JOptionPane.OK_OPTION );
         if (input == 0) {
             playAgain();
@@ -310,6 +556,10 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             reset();
         }
     }
+
+    /**
+     * Displays a JOptionPane for a player loss.
+     */
     private void youLostMessage() {
         try {
             playAudio(LOSE_AUDIO);
@@ -331,6 +581,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
     }
 
+    /**
+     * Loads gui.
+     */
     void loadGui() {
         myJFrame.setLocation(SCREEN_SIZE.width / 2 - myJFrame.getWidth() / 2,
                 SCREEN_SIZE.height / 2 - myJFrame.getHeight() / 2);
@@ -345,18 +598,32 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     }
 
+    /**
+     * Listens for input and handles events.
+     */
     private void listen() {
         final KeyListener newKeyAction = new KeyListener() {
+
+            /**
+             * A method required to be overridden.
+             */
             @Override
             public void keyTyped(KeyEvent e) {
 
             }
 
+            /**
+             * A method required to be overridden.
+             */
             @Override
             public void keyPressed(KeyEvent e) {
 
             }
 
+            /**
+             * Listens for a released key in the wallet
+             * text field.
+             */
             @Override
             public void keyReleased(KeyEvent e) {
                 if (e.getSource().equals(myWalletField)) {
@@ -386,6 +653,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     }
 
+    /**
+     * Action for start item.
+     */
     private void start() {
         setWallet(getWallet());
         setEnableBetButtons(true);
@@ -401,6 +671,10 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             audioError();
         }
     }
+
+    /**
+     * Action for reset item.
+     */
     private void reset() {
         try {
             playAudio(BUTTON_AUDIO);
@@ -419,6 +693,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         resetGameData();
     }
 
+    /**
+     * Action for playAgain item and button.
+     */
     private void playAgain() {
         try {
             playAudio(BUTTON_AUDIO);
@@ -436,6 +713,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myPlayAgainButton.setEnabled(false);
     }
 
+    /**
+     * Action for exit item.
+     */
     private void exit() {
         try {
             playAudio(BUTTON_AUDIO);
@@ -449,7 +729,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         int input = JOptionPane.showConfirmDialog(
                 new JFrame(),
                 "It would stink if you left. " +
-                "\nAre you sure that's what you want to do?",
+                        "\nAre you sure that's what you want to do?",
                 "DON'T LEAVE YOU IDIOT",
                 JOptionPane.YES_OPTION,
                 JOptionPane.NO_OPTION,
@@ -459,6 +739,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
     }
 
+    /**
+     * Action for about item.
+     */
     private void about() {
         try {
             playAudio(BUTTON_AUDIO);
@@ -477,6 +760,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 POOPY_IMAGE_ICON);
     }
 
+    /**
+     * Action for rules item.
+     */
     private void rules() {
         try {
             playAudio(BUTTON_AUDIO);
@@ -505,6 +791,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 POOPY_IMAGE_ICON);
     }
 
+    /**
+     * Action for bet buttons.
+     */
     private void betButtonAction(int theBet) {
         try {
             playAudio(BUTTON_AUDIO);
@@ -518,25 +807,28 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         updateWalletAfterBet(theBet);
         setEnableRollButton(true);
         setWalletTextFieldEditable(false);
-            if (getWallet() < 0) {
-                setWallet(0);
-                setEnableBetButtons(false);
-                int input = JOptionPane.showConfirmDialog(
-                        new JFrame(),
-                        "Don't bet more than you have... We took it all!"
-                                + " \n Would you like to play again?");
-                if (input == 0) {
-                    playAgain();
-                } else if (getWallet() == 0) {
-                    setEnableRollButton(false);
-                    setWalletTextFieldEditable(true);
-                }
-
+        if (getWallet() < 0) {
+            setWallet(0);
+            setEnableBetButtons(false);
+            int input = JOptionPane.showConfirmDialog(
+                    new JFrame(),
+                    "Don't bet more than you have... We took it all!"
+                            + " \n Would you like to play again?");
+            if (input == 0) {
+                playAgain();
+            } else if (getWallet() == 0) {
+                setEnableRollButton(false);
+                setWalletTextFieldEditable(true);
             }
+
+        }
 
 
     }
 
+    /**
+     * Action for roll button.
+     */
     private void rollButtonAction() {
         try {
             playAudio(DICE_AUDIO);
@@ -587,6 +879,9 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
     }
 
+    /**
+     * Action for wallet text field input.
+     */
     private void walletInputAction() {
         if (!(myWalletField.getText().isBlank())) {
             try {
@@ -604,11 +899,21 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
             }
         }
     }
+
+    /**
+     * JOptionPane for audio error.
+     */
     private void audioError() {
         JOptionPane.showConfirmDialog(new JFrame(), "Audio Error. Game Shutting Down.");
         System.exit(0);
     }
 
+    /**
+     * Plays music.
+     * @throws LineUnavailableException
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     */
     private void playMusic() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(MUSIC));
         Clip clip = AudioSystem.getClip();
@@ -616,6 +921,13 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         clip.start();
     }
 
+    /**
+     * Plays audio clips.
+     * @param theAudio
+     * @throws LineUnavailableException
+     * @throws IOException
+     * @throws UnsupportedAudioFileException
+     */
     private void playAudio(String theAudio) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
         AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(theAudio));
         Clip clip = AudioSystem.getClip();
@@ -623,16 +935,28 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         clip.start();
     }
 
+    /**
+     * Sets wallet with a passed in value.
+     * @param theCurrentCash
+     */
     private void setWallet(int theCurrentCash) {
         gameLogic.setWallet(theCurrentCash);
         myWalletField.setText(String.valueOf(getWallet()));
     }
 
+    /**
+     * Sets the score with passed in value.
+     * @param theScore
+     */
     private void setPlayerScore(int theScore) {
         gameLogic.setPlayerScore(theScore);
         myPlayerScore = gameLogic.getPlayerScore();
     }
 
+    /**
+     * Sets bet buttons as enabled or disabled.
+     * @param theValue
+     */
     private void setEnableBetButtons(boolean theValue) {
         myBetButton1.setEnabled(theValue);
         myBetButton2.setEnabled(theValue);
@@ -648,48 +972,74 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         getBetButtonsEnabled();
     }
 
+    /**
+     * Enables and disables the roll button.
+     * @param theValue
+     */
     private void setEnableRollButton(boolean theValue) {
         ROLL_BUTTON.setEnabled(theValue);
     }
 
+    /**
+     * Enables and disables the ability to edit the wallet text field..
+     * @param theValue
+     */
     private void setWalletTextFieldEditable(boolean theValue) {
         myWalletField.setEditable(theValue);
     }
 
+    /**
+     * Sets player wins.
+     */
     private void setPlayerWins() {
         myPlayerWins = gameLogic.getPlayerWins();
     }
 
+    /**
+     * Sets house wins.
+     */
     private void setHouseWins() {
         myHouseWins = gameLogic.getHouseWins();
     }
 
+    /**
+     * Sets score.
+     */
     private void setPlayerScore() {
         myPlayerScore = gameLogic.getPlayerScore();
     }
 
+    /**
+     * Sets a random number for a die.
+     */
     private void setMyRandomNum1() {
         gameLogic.setMyRandomRoll1();
         myRandomRoll1 = gameLogic.getRandomRoll1();
         drawDice.setRandomNum1(myRandomRoll1);
     }
 
+    /**
+     * Sets a random number for a die.
+     */
     private void setMyRandomNum2() {
         gameLogic.setMyRandomRoll2();
         myRandomRoll2 = gameLogic.getRandomRoll2();
         drawDice.setRandomNum2(myRandomRoll2);
     }
 
+    /**
+     * Sets a roll total.
+     */
     private void setRollTotal() {
         gameLogic.setRollTotal();
         myRollValue = gameLogic.getRollTotal();
         myRollField.setText(String.valueOf(getMyRollTotal()));
 
     }
-    private void setRollTotalZero() {
-        gameLogic.setRollTotalZero();
-    }
 
+    /**
+     * Resets game data.
+     */
     private void resetGameData() {
         gameLogic.resetGameData();
         setPlayerWins();
@@ -702,59 +1052,114 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
 
     }
 
+    /**
+     * Updates the wallet and corrisponding text field and uses the passed in bet.
+     * @param theBet
+     */
     private void updateWalletAfterBet(int theBet) {
         gameLogic.updateWalletAfterBet(theBet, getBetButtonsEnabled());
         myWalletField.setText(String.valueOf(getWallet()));
     }
 
+    /**
+     * Updates the wallet text field.
+     */
     private void updateWalletTextField() {
         myWalletField.setText(String.valueOf(getWallet()));
 
     }
 
+    /**
+     * Gets boolean value for if the player won.
+     * @return boolean
+     */
     private boolean getPlayerWon() {
         return gameLogic.getPlayerWon();
     }
+
+    /**
+     * Gets boolean value for if the house won.
+     * @return boolean
+     */
     private boolean getHouseWon() {
         return gameLogic.getHouseWon();
     }
+
+    /**
+     * Gets int value for the wallet.
+     * @return cash in wallet
+     */
     private int getWallet() {
         return gameLogic.getWallet();
     }
 
+    /**
+     * Gets player wins.
+     * @return int value of wins.
+     */
     private int getPlayerWins() {
         return myPlayerWins;
     }
 
-
+    /**
+     * Gets house wins.
+     * @return int value of wins.
+     */
     private int getHouseWins() {
         return myHouseWins;
     }
 
+    /**
+     * Gets player score.
+     * @return int value of score.
+     */
     private int getPlayerScore() {
         return myPlayerScore;
     }
 
+    /**
+     * Gets a die roll.
+     * @return int value of roll.
+     */
     private int getMyRandomRoll1() {
         return myRandomRoll1;
     }
 
+    /**
+     * Gets a die roll.
+     * @return int value of roll.
+     */
     private int getMyRandomRoll2() {
         return myRandomRoll2;
     }
 
+    /**
+     * Gets a roll total.
+     * @return int value for roll total.
+     */
     private int getMyRollTotal() {
         return myRollValue;
     }
 
+    /**
+     * Returns a boolean value for bet buttons to communicate if they are enabled or disabled.
+     * @return a boolean value.
+     */
     private boolean getBetButtonsEnabled() {
         return myBetButtonEnabled;
     }
 
+    /**
+     * Gets any possible win.
+     * @return a boolean to communicate if the player or house won.
+     */
     private boolean getWinValue() {
         return gameLogic.getWinValue();
     }
 
+    /**
+     * A method required to be overridden.
+     */
     @Override
     public void propertyChange(PropertyChangeEvent evt) {
 

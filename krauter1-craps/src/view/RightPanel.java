@@ -9,147 +9,234 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
 
+/**
+ * RightPanel holds location and
+ * size info for that it holds components.
+ *
+ * @author Caleb Krauter
+ * @version 1.0
+ */
 public class RightPanel extends JPanel {
 
+    /**
+     * The background panel.
+     */
     private static JPanel myBackgroundPanel;
-    private static JPanel myRightPanel;
-    private static GridBagConstraints myConstraints;
-    private static JLabel myWalletLabel;
-    private static JTextField myTextField5;
 
-    private static JButton myBetAmount1;
-    private static JButton myBetAmount2;
-    private static JButton myBetAmount3;
-    private static JButton myBetAmount4;
-    private static JButton myBetAmount5;
-    private static JButton myBetAmount6;
+    /**
+     * The right panel.
+     */
+    private static JPanel myRightPanel;
+
+    /**
+     * The GridBagConstraints used in this panel.
+     */
+    private static GridBagConstraints myRightPanelConstraints;
+
+    /**
+     * The label used for the wallet.
+     */
+    private static JLabel myWalletLabel;
+
+    /**
+     * The text field used to display the contents
+     * of the wallet.
+     */
+    private static JTextField myWalletField;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton1;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton2;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton3;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton4;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton5;
+
+    /**
+     * A bet button associated with a particular
+     * bet value.
+     */
+    private static JButton myBetButton6;
+
+    /**
+     * A dimension of the screen size.
+     */
     private static Dimension myScreenSize;
 
+    /**
+     * The RightPanel constructor.
+     *
+     * @param theGridBagLayout layout manager.
+     * @param theBackgroundPanel the background panel.
+     * @param theRightPanel the Right Panel.
+     * @param theRightPanelConstraints  GridBagConstraints of the right panel.
+     * @param theWalletLabel label associated with the wallet.
+     * @param theWalletField text field that displays wallet's contents.
+     * @param theBetButton1 a bet button associated with a particular bet value.
+     * @param theBetButton2 a bet button associated with a particular bet value.
+     * @param theBetButton3 a bet button associated with a particular bet value.
+     * @param theBetButton4 a bet button associated with a particular bet value.
+     * @param theBetButton5 a bet button associated with a particular bet value.
+     * @param theBetButton6 a bet button associated with a particular bet value.
+     * @param theScreenSize a dimension of screen size.
+     */
     public RightPanel(GridBagLayout theGridBagLayout,
                       JPanel theBackgroundPanel,
                       JPanel theRightPanel,
-                      GridBagConstraints theConstraints,
+                      GridBagConstraints theRightPanelConstraints,
                       JLabel theWalletLabel,
-                      JTextField theTextField5,
-                      JButton theBetAmount1,
-                      JButton theBetAmount2,
-                      JButton theBetAmount3,
-                      JButton theBetAmount4,
-                      JButton theBetAmount5,
-                      JButton theBetAmount6,
+                      JTextField theWalletField,
+                      JButton theBetButton1,
+                      JButton theBetButton2,
+                      JButton theBetButton3,
+                      JButton theBetButton4,
+                      JButton theBetButton5,
+                      JButton theBetButton6,
                       Dimension theScreenSize) {
 
         super(theGridBagLayout);
 
         myBackgroundPanel = theBackgroundPanel;
         myRightPanel = theRightPanel;
-        myConstraints = theConstraints;
+        myRightPanelConstraints = theRightPanelConstraints;
         myWalletLabel = theWalletLabel;
-        myTextField5 = theTextField5;
-        myBetAmount1 = theBetAmount1;
-        myBetAmount2 = theBetAmount2;
-        myBetAmount3 = theBetAmount3;
-        myBetAmount4 = theBetAmount4;
-        myBetAmount5 = theBetAmount5;
-        myBetAmount6 = theBetAmount6;
+        myWalletField = theWalletField;
+        myBetButton1 = theBetButton1;
+        myBetButton2 = theBetButton2;
+        myBetButton3 = theBetButton3;
+        myBetButton4 = theBetButton4;
+        myBetButton5 = theBetButton5;
+        myBetButton6 = theBetButton6;
         myScreenSize = theScreenSize;
 
         rightPanel();
         walletLabel();
-        textFields();
+        walletTextField();
         betButtons();
     }
 
+    /**
+     * Location and sizing of the right panel.
+     */
     private void rightPanel() {
         // Right panel
-        myConstraints.ipady = (int) myScreenSize.getHeight();
-        myConstraints.ipadx = 115;
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 0;
-        myConstraints.gridheight = 2;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(160, 0, 0, 0);
-        myBackgroundPanel.add(myRightPanel, myConstraints);
+        myRightPanelConstraints.ipady = (int) myScreenSize.getHeight();
+        myRightPanelConstraints.ipadx = 115;
+        myRightPanelConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        myRightPanelConstraints.gridx = 2;
+        myRightPanelConstraints.gridy = 0;
+        myRightPanelConstraints.gridheight = 2;
+        myRightPanelConstraints.gridwidth = 0;
+        myRightPanelConstraints.weightx = 1;
+        myRightPanelConstraints.weighty = 1;
+        myRightPanelConstraints.insets = new Insets(160, 0, 0, 0);
+        myBackgroundPanel.add(myRightPanel, myRightPanelConstraints);
     }
 
+    /**
+     * Location and sizing of the wallet label.
+     */
     private void walletLabel() {
         // Wallet label
-        myConstraints.ipadx = 20;
-        myConstraints.ipady = 10;
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(75, 0, 0, 50);
-        myRightPanel.add(myWalletLabel, myConstraints);
+        myRightPanelConstraints.ipadx = 20;
+        myRightPanelConstraints.ipady = 10;
+        myRightPanelConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        myRightPanelConstraints.gridx = 2;
+        myRightPanelConstraints.gridy = 1;
+        myRightPanelConstraints.gridheight = 0;
+        myRightPanelConstraints.gridwidth = 0;
+        myRightPanelConstraints.weightx = 1;
+        myRightPanelConstraints.weighty = 1;
+        myRightPanelConstraints.insets = new Insets(75, 0, 0, 50);
+        myRightPanel.add(myWalletLabel, myRightPanelConstraints);
     }
 
-    private void textFields() {
+    /**
+     * Location and sizing of wallet text field.
+     */
+    private void walletTextField() {
         // Wallet textfield
-        myConstraints.ipadx = 100;
-        myConstraints.ipady = 10;
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(100, 0, 0, 50);
-        myRightPanel.add(myTextField5, myConstraints);
-
-
+        myRightPanelConstraints.ipadx = 100;
+        myRightPanelConstraints.ipady = 10;
+        myRightPanelConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        myRightPanelConstraints.gridx = 2;
+        myRightPanelConstraints.gridy = 1;
+        myRightPanelConstraints.gridheight = 0;
+        myRightPanelConstraints.gridwidth = 0;
+        myRightPanelConstraints.weightx = 1;
+        myRightPanelConstraints.weighty = 1;
+        myRightPanelConstraints.insets = new Insets(100, 0, 0, 50);
+        myRightPanel.add(myWalletField, myRightPanelConstraints);
     }
 
+    /**
+     * Location and sizing of the bet buttons.
+     */
     private void betButtons() {
         // Bet button amount 1
-        myConstraints.ipadx = 40;
-        myConstraints.ipady = 20;
-        myConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
-        myConstraints.gridx = 2;
-        myConstraints.gridy = 1;
-        myConstraints.gridheight = 0;
-        myConstraints.gridwidth = 0;
-        myConstraints.weightx = 1;
-        myConstraints.weighty = 1;
-        myConstraints.insets = new Insets(200, 0, 0, 50);
-        myRightPanel.add(myBetAmount1, myConstraints);
+        myRightPanelConstraints.ipadx = 40;
+        myRightPanelConstraints.ipady = 20;
+        myRightPanelConstraints.anchor = GridBagConstraints.FIRST_LINE_END;
+        myRightPanelConstraints.gridx = 2;
+        myRightPanelConstraints.gridy = 1;
+        myRightPanelConstraints.gridheight = 0;
+        myRightPanelConstraints.gridwidth = 0;
+        myRightPanelConstraints.weightx = 1;
+        myRightPanelConstraints.weighty = 1;
+        myRightPanelConstraints.insets = new Insets(200, 0, 0, 50);
+        myRightPanel.add(myBetButton1, myRightPanelConstraints);
 
         // Bet button amount 2
-        myBetAmount2.setSize(new Dimension(20, 10));
+        myBetButton2.setSize(new Dimension(20, 10));
 
-        myConstraints.insets = new Insets(250, 0, 0, 50);
-        myRightPanel.add(myBetAmount2, myConstraints);
+        myRightPanelConstraints.insets = new Insets(250, 0, 0, 50);
+        myRightPanel.add(myBetButton2, myRightPanelConstraints);
 
         // Bet button amount 3
-        myBetAmount3.setSize(new Dimension(20, 10));
+        myBetButton3.setSize(new Dimension(20, 10));
 
-        myConstraints.insets = new Insets(300, 0, 0, 50);
-        myRightPanel.add(myBetAmount3, myConstraints);
+        myRightPanelConstraints.insets = new Insets(300, 0, 0, 50);
+        myRightPanel.add(myBetButton3, myRightPanelConstraints);
 
         // Bet button amount 4
-        myBetAmount4.setSize(new Dimension(20, 10));
+        myBetButton4.setSize(new Dimension(20, 10));
 
-        myConstraints.insets = new Insets(350, 0, 0, 50);
-        myRightPanel.add(myBetAmount4, myConstraints);
+        myRightPanelConstraints.insets = new Insets(350, 0, 0, 50);
+        myRightPanel.add(myBetButton4, myRightPanelConstraints);
 
         // Bet amount button 5
-        myBetAmount5.setSize(new Dimension(20, 10));
+        myBetButton5.setSize(new Dimension(20, 10));
 
-        myConstraints.insets = new Insets(400, 0, 0, 50);
-        myRightPanel.add(myBetAmount5, myConstraints);
+        myRightPanelConstraints.insets = new Insets(400, 0, 0, 50);
+        myRightPanel.add(myBetButton5, myRightPanelConstraints);
 
         // Bet amount button 6
-        myBetAmount6.setSize(new Dimension(20, 10));
+        myBetButton6.setSize(new Dimension(20, 10));
 
-        myConstraints.insets = new Insets(450, 0, 0, 50);
-        myRightPanel.add(myBetAmount6, myConstraints);
+        myRightPanelConstraints.insets = new Insets(450, 0, 0, 50);
+        myRightPanel.add(myBetButton6, myRightPanelConstraints);
     }
 
 }
