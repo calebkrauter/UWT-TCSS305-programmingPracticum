@@ -4,7 +4,7 @@ package controller;
  * This class starts the Game of Craps.
  *
  * @author Caleb Krauter
- * @version 1.0
+ * @version 1.1
  */
 public class Application {
 
