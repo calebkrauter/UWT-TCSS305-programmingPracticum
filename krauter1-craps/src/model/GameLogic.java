@@ -7,7 +7,7 @@ import java.util.Random;
  * GameLogic does the heavy lifting for updating data according to the game rules.
  *
  * @author Caleb Krauter
- * @version 1.0
+ * @version 1.1
  */
 public class GameLogic {
 
@@ -291,11 +291,16 @@ public class GameLogic {
         mySum = getRandomRoll1() + getRandomRoll2();
     }
 
-
+    /**
+     * Sets the random roll of die 1.
+     */
     public void setMyRandomRoll1() {
         myRandomRoll1 = random.nextInt(1, 7);
     }
 
+    /**
+     * Sets the random roll of die 1.
+     */
     public void setMyRandomRoll2() {
         myRandomRoll2 = random.nextInt(1, 7);
     }

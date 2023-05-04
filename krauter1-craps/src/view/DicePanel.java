@@ -11,7 +11,7 @@ import java.awt.Insets;
  * size info for that it holds components.
  *
  * @author Caleb Krauter
- * @version 1.0
+ * @version 1.1
  */
 public class DicePanel extends JPanel {
 

@@ -41,6 +41,9 @@ import static java.awt.event.KeyEvent.*;
  * This controller object acts as an intermediary between the view and the model.
  * CrapsController listens for events, handles them, updates the model and view.
  * CrapsController handles the heavy lifting when it comes to communicating data.
+ *
+ * @author Caleb Krauter
+ * @version 1.1
  */
 public class CrapsController extends JPanel implements PropertyChangeListener {
     /**
@@ -756,7 +759,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         }
         JOptionPane.showMessageDialog(
                 new JFrame(),
-                "Author: Caleb Krauter -> App version 1.0",
+                "Author: Caleb Krauter -> Game version 1.1",
                 "About",
                 JOptionPane.DEFAULT_OPTION,
                 new ImageIcon(POOPY_IMAGE_ICON));

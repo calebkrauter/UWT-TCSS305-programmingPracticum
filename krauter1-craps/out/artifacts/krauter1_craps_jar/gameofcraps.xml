@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<launch4jConfig>
+  <dontWrapJar>false</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>C:\Users\Kraut\Documents\Workspace\uw-tcss-305\krauter1-craps\out\artifacts\krauter1_craps_jar\krauter1-craps.jar</jar>
+  <outfile>C:\Users\Kraut\Documents\Workspace\uw-tcss-305\krauter1-craps\out\artifacts\krauter1_craps_jar\thegameofcraps.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir>.</chdir>
+  <priority>normal</priority>
+  <downloadUrl></downloadUrl>
+  <supportUrl></supportUrl>
+  <stayAlive>false</stayAlive>
+  <restartOnCrash>false</restartOnCrash>
+  <manifest></manifest>
+  <icon>C:\Users\Kraut\Documents\GAME_RELEASE_DATA\the-game-of-craps-v1.1\game images\poopyIcon.png</icon>
+  <classPath>
+    <mainClass>controller.Application</mainClass>
+    <cp>Applicatoin</cp>
+  </classPath>
+  <jre>
+    <path>%JAVA_HOME%;%PATH%</path>
+    <requiresJdk>false</requiresJdk>
+    <requires64Bit>false</requires64Bit>
+    <minVersion></minVersion>
+    <maxVersion></maxVersion>
+  </jre>
+</launch4jConfig>

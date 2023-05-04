@@ -11,7 +11,7 @@ import java.awt.LayoutManager;
  * on the roll values.
  *
  * @author Caleb Krauter
- * @version 1.0
+ * @version 1.1
  */
 public class DrawDice extends JPanel {
 
