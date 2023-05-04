@@ -33,8 +33,6 @@ import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
 import java.io.IOException;
-import java.net.URL;
-
 import static java.awt.event.KeyEvent.*;
 
 /**
@@ -48,25 +46,25 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
      */
     private static String myCount = String.valueOf(0);
     /**
-     * MUSIC a URL that represents the path to audio
+     * MUSIC a string that represents the path to audio
      */
-    private static final URL MUSIC = CrapsController.class.getResource("music.wav");
+    private static final String MUSIC = "src/controller/music.wav";
     /**
-     * DICE_AUDIO a URL that represents the path to audio
+     * DICE_AUDIO a string that represents the path to audio
      */
-    private static final URL DICE_AUDIO = CrapsController.class.getResource("diceRoll.wav");
+    private static final String DICE_AUDIO = "src/controller/diceRoll.wav";
     /**
-     * WIN_AUDIO a URL that represents the path to audio
+     * WIN_AUDIO a string that represents the path to audio
      */
-    private static final URL WIN_AUDIO = CrapsController.class.getResource("winAudio.wav");
+    private static final String WIN_AUDIO = "src/controller/winAudio.wav";
     /**
-     * LOSE_AUDIO a URL that represents the path to audio
+     * LOSE_AUDIO a string that represents the path to audio
      */
-    private static final URL LOSE_AUDIO = CrapsController.class.getResource("loseAudio.wav");
+    private static final String LOSE_AUDIO = "src/controller/loseAudio.wav";
     /**
-     * BUTTON_AUDIO a URL that represents the path to audio
+     * BUTTON_AUDIO a string that represents the path to audio
      */
-    private static final URL BUTTON_AUDIO = CrapsController.class.getResource("buttonAudio.wav");
+    private static final String BUTTON_AUDIO = "src/controller/buttonAudio.wav";
     /**
      * myRandomRoll1 an int that represents the value of a rolled die.
      */
@@ -177,21 +175,21 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
      */
     private final TitlePanel titlePanel;
     /**
-     * POOPY_IMAGE_BANNER is a URL that gets used for a new ImageIcon.
+     * POOPY_IMAGE_BANNER is an ImageIcon.
      */
-    private static final URL POOPY_IMAGE_BANNER = CrapsController.class.getResource("poopy.png");
+    private static final ImageIcon POOPY_IMAGE_BANNER = new ImageIcon("src/controller/poopy.png");
     /**
-     * POOPY_IMAGE_ICON is a URL that gets used for a new ImageIcon.
+     * POOPY_IMAGE_ICON is an ImageIcon.
      */
-    private static final URL POOPY_IMAGE_ICON = CrapsController.class.getResource("poopyIcon.png");
+    private static final ImageIcon POOPY_IMAGE_ICON = new ImageIcon("src/controller/poopyIcon.png");
     /**
-     * SAD_POOPY_IMAGE is a URL that gets used for a new ImageIcon.
+     * SAD_POOPY_IMAGE is an ImageIcon.
      */
-    private static final URL SAD_POOPY_IMAGE = CrapsController.class.getResource("poopyIconSad.png");
+    private static final ImageIcon SAD_POOPY_IMAGE = new ImageIcon("src/controller/poopyIconSad.png");
     /**
      * TITLE_IMAGE_LABEL is a JLabel used to house the title image.
      */
-    private static final JLabel TITLE_IMAGE_LABEL = new JLabel(new ImageIcon(POOPY_IMAGE_BANNER));
+    private static final JLabel TITLE_IMAGE_LABEL = new JLabel(POOPY_IMAGE_BANNER);
     /**
      * PLAYER_WINS_LABEL player wins.
      */
@@ -594,7 +592,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
         myJFrame.setSize(850, 850);
         myJFrame.setMinimumSize(new Dimension(750, 750));
         myJFrame.add(myBackgroundPanel);
-        myJFrame.setIconImage(new ImageIcon(POOPY_IMAGE_ICON).getImage());
+        myJFrame.setIconImage(POOPY_IMAGE_ICON.getImage());
         myJFrame.setJMenuBar(menuBar);
         myJFrame.setVisible(true);
 
@@ -735,7 +733,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 "DON'T LEAVE YOU IDIOT",
                 JOptionPane.YES_OPTION,
                 JOptionPane.NO_OPTION,
-                new ImageIcon(SAD_POOPY_IMAGE));
+                SAD_POOPY_IMAGE);
         if (input == 0) {
             System.exit(0);
         }
@@ -759,7 +757,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                 "Author: Caleb Krauter -> App version 1.0",
                 "About",
                 JOptionPane.DEFAULT_OPTION,
-                new ImageIcon(POOPY_IMAGE_ICON));
+                POOPY_IMAGE_ICON);
     }
 
     /**
@@ -790,7 +788,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
                         "-If they roll a 7 before rolling the point value they got on" +
                         " the first roll the roller/player loses (the 'house' wins).", "Rules",
                 JOptionPane.DEFAULT_OPTION,
-                new ImageIcon(POOPY_IMAGE_ICON));
+                POOPY_IMAGE_ICON);
     }
 
     /**
@@ -917,7 +915,7 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
      * @throws UnsupportedAudioFileException
      */
     private void playMusic() throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(MUSIC);
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(MUSIC));
         Clip clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
@@ -930,8 +928,8 @@ public class CrapsController extends JPanel implements PropertyChangeListener {
      * @throws IOException
      * @throws UnsupportedAudioFileException
      */
-    private void playAudio(URL theAudio) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
-        AudioInputStream audioStream = AudioSystem.getAudioInputStream(theAudio);
+    private void playAudio(String theAudio) throws LineUnavailableException, IOException, UnsupportedAudioFileException {
+        AudioInputStream audioStream = AudioSystem.getAudioInputStream(new File(theAudio));
         Clip clip = AudioSystem.getClip();
         clip.open(audioStream);
         clip.start();
